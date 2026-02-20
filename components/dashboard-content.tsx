@@ -87,26 +87,28 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const nextWithdrawalDate = ""
 
   const allReportData = [
-    { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "2.23" },
-    { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "2.34" },
-    { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "2.50" },
-    { date: "Feb 15, 2026", impressions: 10800, clicks: 88, revenue: 27, ctr: "0.81%", ecpm: "2.50" },
-    { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "2.59" },
-    { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "2.54" },
-    { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "2.58" },
-    { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "6.09" },
-    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 34, ctr: "0.86%", ecpm: "3.24" },
+    { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "12" },
+    { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "14" },
+    { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "16" },
+    { date: "Feb 15, 2026", impressions: 10800, clicks: 88, revenue: 27, ctr: "0.81%", ecpm: "18" },
+    { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "20" },
+    { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "24" },
+    { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
+    { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
+    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 34, ctr: "0.86%", ecpm: "56" },
   ]
 
   const recentActivityData = [
-    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 34, ctr: "0.86%", ecpm: "3.24" },
-    { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "6.09" },
-    { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "2.58" },
-    { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "2.54" },
-    { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "2.59" },
-    { date: "Feb 15, 2026", impressions: 10800, clicks: 88, revenue: 27, ctr: "0.81%", ecpm: "2.50" },
-    { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "2.50" },
-    { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "2.34" },
+    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 34, ctr: "0.86%", ecpm: "56" },
+    { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
+    { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
+    { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "24" },
+    { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "20" },
+    { date: "Feb 15, 2026", impressions: 10800, clicks: 88, revenue: 27, ctr: "0.81%", ecpm: "18" },
+    { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "16" },
+    { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "14" },
+    { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "12" },
+  ]
     { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "2.23" },
   ]
 
@@ -123,7 +125,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const todayImpressions = 10500
   const todayClicks = 90
   const todayCTR = "0.84"
-  const todayECPM = "22"
+  const todayECPM = "56"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
