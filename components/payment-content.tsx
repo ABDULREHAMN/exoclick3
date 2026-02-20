@@ -76,7 +76,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       status: "Active",
       isDefault: true,
       priority: 1,
-      addedDate: "Jan 15, 2026",
+      addedDate: "Feb 11, 2026",
     },
   ])
 

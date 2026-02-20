@@ -32,7 +32,7 @@ export function ProfilePage({ onBack }: ProfilePageProps) {
     address: "",
     bio: "",
     website: "https://eduinfomi.com",
-    joinDate: "January 13, 2026",
+    joinDate: "February 11, 2026",
   })
 
   const handleSave = () => {

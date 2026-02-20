@@ -29,7 +29,7 @@ export function SiteZoneContent() {
       category: "Education",
       status: "Approved",
       zones: 10,
-      addedDate: "Jan 13, 2026",
+      addedDate: "Feb 11, 2026",
       description: "Educational information and digital learning platform",
       siteType: "Blog",
     },
