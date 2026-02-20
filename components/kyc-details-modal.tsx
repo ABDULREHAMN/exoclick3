@@ -63,7 +63,7 @@ export function KycDetailsModal({ isOpen, onClose }: KycDetailsModalProps) {
                   <Calendar size={14} className="mr-1" />
                   Verification Date
                 </div>
-                <div className="font-semibold">June 29, 2025</div>
+                <div className="font-semibold">February 16, 2026</div>
               </div>
 
               <div>
@@ -71,7 +71,7 @@ export function KycDetailsModal({ isOpen, onClose }: KycDetailsModalProps) {
                   <Hash size={14} className="mr-1" />
                   ID Reference
                 </div>
-                <div className="font-mono text-sm">#KYC2025-JUNE29</div>
+                <div className="font-mono text-sm">#KYC2026-FEB16</div>
               </div>
             </div>
 

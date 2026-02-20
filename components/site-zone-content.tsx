@@ -24,13 +24,13 @@ export function SiteZoneContent() {
   const [sites, setSites] = useState([
     {
       id: 1,
-      name: "Tech Blogi",
-      url: "https://techblogi.com/",
-      category: "Technology",
+      name: "EduInfomi",
+      url: "https://eduinfomi.com/",
+      category: "Education",
       status: "Approved",
       zones: 10,
-      addedDate: "Jan 13, 2026",
-      description: "Technology blog covering latest tech news and reviews",
+      addedDate: "Feb 11, 2026",
+      description: "Educational information and digital learning platform",
       siteType: "Blog",
     },
   ])
@@ -39,7 +39,7 @@ export function SiteZoneContent() {
     {
       id: 201,
       name: "Header Banner",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "728x90",
       status: "Live",
@@ -47,7 +47,7 @@ export function SiteZoneContent() {
     {
       id: 202,
       name: "Top Leaderboard",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "970x90",
       status: "Live",
@@ -55,7 +55,7 @@ export function SiteZoneContent() {
     {
       id: 203,
       name: "Sidebar Rectangle",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "300x250",
       status: "Live",
@@ -63,7 +63,7 @@ export function SiteZoneContent() {
     {
       id: 204,
       name: "Sidebar Large Rectangle",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "336x280",
       status: "Live",
@@ -71,7 +71,7 @@ export function SiteZoneContent() {
     {
       id: 205,
       name: "Footer Banner",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "728x90",
       status: "Live",
@@ -79,7 +79,7 @@ export function SiteZoneContent() {
     {
       id: 206,
       name: "In-Article Banner",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "300x250",
       status: "Live",
@@ -87,7 +87,7 @@ export function SiteZoneContent() {
     {
       id: 207,
       name: "Sticky Footer Ad",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Display",
       size: "320x50",
       status: "Live",
@@ -95,7 +95,7 @@ export function SiteZoneContent() {
     {
       id: 208,
       name: "Mobile Banner",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Mobile",
       size: "320x100",
       status: "Live",
@@ -103,7 +103,7 @@ export function SiteZoneContent() {
     {
       id: 209,
       name: "Interstitial",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Interstitial",
       size: "Full Screen",
       status: "Live",
@@ -111,7 +111,7 @@ export function SiteZoneContent() {
     {
       id: 210,
       name: "Video Pre-Roll",
-      site: "techblogi.com",
+      site: "eduinfomi.com",
       format: "Video",
       size: "16:9",
       status: "Live",

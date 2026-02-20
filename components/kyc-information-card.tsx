@@ -38,12 +38,12 @@ export function KycInformationCard() {
 
             <div>
               <div className="text-sm text-gray-600">Verification Date</div>
-              <div className="font-medium">June 29, 2025</div>
+              <div className="font-medium">February 16, 2026</div>
             </div>
 
             <div>
               <div className="text-sm text-gray-600">Reference ID</div>
-              <div className="font-mono text-sm">#KYC2025-JUNE29</div>
+              <div className="font-mono text-sm">#KYC2026-FEB16</div>
             </div>
           </div>
 
