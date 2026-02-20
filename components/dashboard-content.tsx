@@ -1745,9 +1745,9 @@ function RecentActivityRow({ date, domain, impressions, clicks, ctr, ecpm, reven
       <td className="py-3 px-4 text-sm">{date}</td>
       <td className="py-3 px-4 text-sm">{domain}</td>
       <td className="py-3 px-4 text-sm">
-        {typeof impressions === "number" ? impressions.toLocaleString() : impressions}
+        {typeof impressions === "number" ? impressions.toString() : impressions}
       </td>
-      <td className="py-3 px-4 text-sm">{typeof clicks === "number" ? clicks.toLocaleString() : clicks}</td>
+      <td className="py-3 px-4 text-sm">{typeof clicks === "number" ? clicks.toString() : clicks}</td>
       <td className="py-3 px-4 text-sm">{ctr}</td>
       <td className="py-3 px-4 text-sm">{ecpm}</td>
       <td className="py-3 px-4 text-sm font-medium">${typeof revenue === "number" ? revenue.toFixed(2) : revenue}</td>
