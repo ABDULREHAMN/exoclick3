@@ -11,15 +11,15 @@ import {
   Legend,
 } from "recharts"
 
-// Updated data for the last 7 months (Jan-Jul) with updated July total
+// Updated data for the last 7 months (Jan-Jul) with February 2026 update
 const data = [
   { name: "Jan", revenue: 145 },
-  { name: "Feb", revenue: 168 },
-  { name: "Mar", revenue: 195 },
-  { name: "Apr", revenue: 178 },
-  { name: "May", revenue: 192 },
+  { name: "Feb", revenue: 285 }, // Updated February 2026 total
+  { name: "Mar", revenue: 0 },
+  { name: "Apr", revenue: 0 },
+  { name: "May", revenue: 0 },
   { name: "Jun", revenue: 3910.46 },
-  { name: "Jul", revenue: 14183.37 }, // Updated month total
+  { name: "Jul", revenue: 14183.37 },
 ]
 
 // Totals for February 12-20 period

@@ -122,10 +122,22 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const todayRevenue = 34
   const todayImpressions = 10500
   const todayClicks = 90
-  const todayCTR = "0.86"
-  const todayECPM = "3.24"
+  const todayCTR = "0.84"
+  const todayECPM = "22"
 
-  const hourlyData = []
+  const hourlyData = [
+    { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
+    { hour: "01", revenue: 1, impressions: 350, clicks: 4, ctr: "1.14%", ecpm: "2.86" },
+    { hour: "02", revenue: 3, impressions: 500, clicks: 6, ctr: "1.20%", ecpm: "6.00" },
+    { hour: "03", revenue: 2, impressions: 420, clicks: 5, ctr: "1.19%", ecpm: "4.76" },
+    { hour: "04", revenue: 4, impressions: 600, clicks: 7, ctr: "1.17%", ecpm: "6.67" },
+    { hour: "05", revenue: 3, impressions: 550, clicks: 6, ctr: "1.09%", ecpm: "5.45" },
+    { hour: "06", revenue: 5, impressions: 800, clicks: 9, ctr: "1.13%", ecpm: "6.25" },
+    { hour: "07", revenue: 4, impressions: 750, clicks: 8, ctr: "1.07%", ecpm: "5.33" },
+    { hour: "08", revenue: 3, impressions: 600, clicks: 7, ctr: "1.17%", ecpm: "5.00" },
+    { hour: "09", revenue: 4, impressions: 700, clicks: 8, ctr: "1.14%", ecpm: "5.71" },
+    { hour: "10", revenue: 3, impressions: 650, clicks: 7, ctr: "1.08%", ecpm: "4.62" },
+  ]
 
   const todayTotals = {
     impressions: 10500,
@@ -983,7 +995,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Average CTR</span>
-                    <span className="text-sm font-medium text-blue-600">10.00%</span>
+                    <span className="text-sm font-medium text-blue-600">0.84%</span>
                   </div>
                 </div>
               </Card>
@@ -996,15 +1008,15 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Today's eCPM</span>
-                    <span className="text-xl font-bold text-purple-600">$3.00</span>
+                    <span className="text-xl font-bold text-purple-600">$22</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Best Day</span>
-                    <span className="text-sm font-semibold text-gray-700">N/A</span>
+                    <span className="text-sm font-semibold text-gray-700">19 Feb 2026 ($67)</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Average eCPM</span>
-                    <span className="text-sm font-medium text-purple-600">$3.00</span>
+                    <span className="text-sm font-medium text-purple-600">$23</span>
                   </div>
                 </div>
               </Card>
