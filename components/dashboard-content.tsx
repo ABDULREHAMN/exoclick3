@@ -357,7 +357,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
             hour: Number.parseInt(hourStr),
             ...metrics,
             ctr: ((metrics.clicks / metrics.impressions) * 100).toFixed(2) + "%",
-            ecpm: ((metrics.revenue / metrics.impressions) * 1000).toFixed(2),
+            ecpm: metrics.ecpm || "0.00", // Use manual ECPM value from data, no auto-calculation
           }
         })
         .sort((a, b) => {

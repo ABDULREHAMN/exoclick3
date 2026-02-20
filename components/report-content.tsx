@@ -282,8 +282,13 @@ export function ReportContent() {
       return sum + clicks
     }, 0)
 
+    // Use manual ECPM values from data - find average of manual ECPMs instead of calculating
     const avgCTR = totalImpressions > 0 ? ((totalClicks / totalImpressions) * 100).toFixed(2) : "0.00"
-    const avgECPM = totalImpressions > 0 ? ((totalRevenue / totalImpressions) * 1000).toFixed(2) : "0.00"
+    const ecpmValues = currentReportData.map(row => {
+      const ecpmStr = row.ecpm.replace("$", "")
+      return Number.parseFloat(ecpmStr)
+    })
+    const avgECPM = ecpmValues.length > 0 ? (ecpmValues.reduce((a, b) => a + b, 0) / ecpmValues.length).toFixed(2) : "0.00"
 
     return {
       totalRevenue: totalRevenue.toFixed(3),
