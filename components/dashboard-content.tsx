@@ -95,11 +95,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "24" },
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
-    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 34, ctr: "0.86%", ecpm: "56" },
+    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 76, ctr: "0.86%", ecpm: "68" },
   ]
 
   const recentActivityData = [
-    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 34, ctr: "0.86%", ecpm: "56" },
+    { date: "Feb 20, 2026", impressions: 10500, clicks: 90, revenue: 76, ctr: "0.86%", ecpm: "68" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
     { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "24" },
@@ -112,18 +112,18 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = {
     date: "Feb 20, 2026",
-    revenue: 34,
+    revenue: 76,
     impressions: 10500,
     clicks: 90,
     ctr: "0.86%",
-    ecpm: "3.24",
+    ecpm: "68",
   }
 
-  const todayRevenue = 34
+  const todayRevenue = 76
   const todayImpressions = 10500
   const todayClicks = 90
   const todayCTR = "0.84"
-  const todayECPM = "56"
+  const todayECPM = "68"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -651,7 +651,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
   // FORCE UPDATE: Using Feb 12-20 totals
-  const displayTotalRevenue = 285 // Forced Feb 12-20 total
+  const displayTotalRevenue = 343 // Updated with new Feb 20 value
   const displayTotalClicks = 800 // Forced Feb 12-20 total
   const displayTotalImpressions = 95690 // Forced Feb 12-20 total
 
