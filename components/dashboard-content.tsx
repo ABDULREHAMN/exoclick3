@@ -103,6 +103,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "6.09" },
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "2.58" },
     { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "2.54" },
+    { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "2.59" },
+    { date: "Feb 15, 2026", impressions: 10800, clicks: 88, revenue: 27, ctr: "0.81%", ecpm: "2.50" },
+    { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "2.50" },
+    { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "2.34" },
+    { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "2.23" },
   ]
 
   const latestActivity = {
