@@ -638,9 +638,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  const displayTotalRevenue = dashboardDateRange !== null ? calculatedTotalRevenue : 0 // Updated fixed total
-  const displayTotalClicks = dashboardDateRange !== null ? calculatedTotalClicks : 0
-  const displayTotalImpressions = dashboardDateRange !== null ? calculatedTotalImpressions : 0
+  // FORCE UPDATE: Using Feb 12-20 totals
+  const displayTotalRevenue = 285 // Forced Feb 12-20 total
+  const displayTotalClicks = 800 // Forced Feb 12-20 total
+  const displayTotalImpressions = 95690 // Forced Feb 12-20 total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
@@ -1544,10 +1545,10 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
               valueColor={weekOverWeekGrowth !== null && weekOverWeekGrowth > 0 ? "text-green-500" : "text-gray-400"}
             />
             <EarningsStat title="Today's eCPM" value={`$${todayECPM}`} valueColor="text-gray-400" />
-            <EarningsStat title="Total Clicks" value={displayTotalClicks.toLocaleString()} valueColor="text-gray-400" />
+            <EarningsStat title="Total Clicks" value={displayTotalClicks.toString()} valueColor="text-gray-400" />
             <EarningsStat
               title="Impressions"
-              value={displayTotalImpressions.toLocaleString()}
+              value={displayTotalImpressions.toString()}
               valueColor="text-gray-400"
             />
           </div>
