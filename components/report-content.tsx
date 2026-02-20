@@ -306,8 +306,7 @@ export function ReportContent() {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-medium">Report Results</h3>
             <div className="text-sm text-gray-500">
-              {"Generated on "}
-              {new Date().toLocaleDateString()} {" at "} {new Date().toLocaleTimeString()}
+              Generated on Feb 20, 2026
             </div>
           </div>
 

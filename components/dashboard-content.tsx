@@ -109,8 +109,6 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "14" },
     { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "12" },
   ]
-    { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "2.23" },
-  ]
 
   const latestActivity = {
     date: "Feb 20, 2026",
@@ -118,7 +116,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     impressions: 10500,
     clicks: 90,
     ctr: "0.86%",
-    ecpm: "3.24",
+    ecpm: "56",
   }
 
   const todayRevenue = 34
