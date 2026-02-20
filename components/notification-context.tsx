@@ -502,7 +502,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     {
       id: "kyc-verified",
       title: "KYC Verification Completed",
-      message: "Your KYC has been verified successfully on June 29, 2025. You can now withdraw funds without limits.",
+      message: "Your KYC has been verified successfully on February 16, 2026. You can now withdraw funds without limits.",
       timestamp: new Date(Date.now() - 57 * 24 * 60 * 60 * 1000), // 57 days ago
       isRead: true,
       type: "success",
