@@ -1,4 +1,5 @@
 "use client"
+// Report data with manual ECPM values - no auto-calculation
 import { useState } from "react"
 import { Download, Filter, RefreshCw, BarChart2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
