@@ -14,7 +14,7 @@ import {
 // Updated data for the last 7 months (Jan-Jul) with February 2026 update
 const data = [
   { name: "Jan", revenue: 145 },
-  { name: "Feb", revenue: 285 }, // Updated February 2026 total
+  { name: "Feb", revenue: 356.76 }, // Updated February 2026 total with Feb 21
   { name: "Mar", revenue: 0 },
   { name: "Apr", revenue: 0 },
   { name: "May", revenue: 0 },
@@ -22,9 +22,9 @@ const data = [
   { name: "Jul", revenue: 14183.37 },
 ]
 
-// Totals for February 12-20 period
+// Totals for February 12-21 period
 const PERIOD_TOTALS = {
-  revenue: 285,
+  revenue: 356.76,
   impressions: 95690,
   clicks: 800,
 }
