@@ -226,11 +226,11 @@ const reportData = {
 }
 
 const statisticsTotals = {
-  impressions: 95690,
-  clicks: 800,
-  revenue: 356.76,
-  ecpm: 25.8,
-  ctr: 0.84,
+  impressions: 102034,
+  clicks: 965,
+  revenue: 391.60,
+  ecpm: 26.1,
+  ctr: 0.95,
 }
 
 export function ReportContent() {
