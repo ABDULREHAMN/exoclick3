@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 322.54
+  const availableBalance = 356.54
   const pendingBalance = 0
-  const thisMonthEarnings = 322.76
+  const thisMonthEarnings = 356.76
   const totalPayments = 0
-  const totalEarnings = 322.76
+  const totalEarnings = 356.76
   const nextWithdrawalDate = ""
 
   const allReportData = [
@@ -96,9 +96,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
     { date: "Feb 20, 2026", impressions: 12344, clicks: 285, revenue: 71.84, ctr: "2.31%", ecpm: "76.56" },
+    { date: "Feb 21, 2026", impressions: 6344, clicks: 165, revenue: 34.84, ctr: "2.60%", ecpm: "76.86" },
   ]
 
   const recentActivityData = [
+    { date: "Feb 21, 2026", impressions: 6344, clicks: 165, revenue: 34.84, ctr: "2.60%", ecpm: "76.86" },
     { date: "Feb 20, 2026", impressions: 12344, clicks: 285, revenue: 71.84, ctr: "2.31%", ecpm: "76.56" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
@@ -111,19 +113,19 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const latestActivity = {
-    date: "Feb 20, 2026",
-    revenue: 71.84,
-    impressions: 12344,
-    clicks: 285,
-    ctr: "2.31%",
-    ecpm: "76.56",
+    date: "Feb 21, 2026",
+    revenue: 34.84,
+    impressions: 6344,
+    clicks: 165,
+    ctr: "2.60%",
+    ecpm: "76.86",
   }
 
-  const todayRevenue = 71.84
-  const todayImpressions = 12344
-  const todayClicks = 285
-  const todayCTR = "2.31"
-  const todayECPM = "76.56"
+  const todayRevenue = 34.84
+  const todayImpressions = 6344
+  const todayClicks = 165
+  const todayCTR = "2.60"
+  const todayECPM = "76.86"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -650,10 +652,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  // FORCE UPDATE: Using Feb 12-20 totals
-  const displayTotalRevenue = 327.84 // Updated with new Feb 20 value
-  const displayTotalClicks = 800 // Forced Feb 12-20 total
-  const displayTotalImpressions = 95690 // Forced Feb 12-20 total
+  // FORCE UPDATE: Using Feb 12-21 totals
+  const displayTotalRevenue = 391.60 // Updated with Feb 21 value (356.76 + 34.84)
+  const displayTotalClicks = 965 // Updated Feb 12-21 total (800 + 165)
+  const displayTotalImpressions = 102034 // Updated Feb 12-21 total (95690 + 6344)
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
@@ -966,7 +968,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">This Month</span>
-                    <span className="text-xl font-bold text-green-600">${(285).toFixed(2)}</span>
+                    <span className="text-xl font-bold text-green-600">${(356.76).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
