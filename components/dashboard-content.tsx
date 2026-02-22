@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 356.54
+  const availableBalance = 432.54
   const pendingBalance = 0
-  const thisMonthEarnings = 356.76
+  const thisMonthEarnings = 432.76
   const totalPayments = 0
-  const totalEarnings = 356.76
+  const totalEarnings = 432.76
   const nextWithdrawalDate = ""
 
   const allReportData = [
@@ -96,36 +96,37 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
     { date: "Feb 20, 2026", impressions: 12344, clicks: 285, revenue: 71.84, ctr: "2.31%", ecpm: "76.56" },
-    { date: "Feb 21, 2026", impressions: 6344, clicks: 165, revenue: 34.84, ctr: "2.60%", ecpm: "76.86" },
+    { date: "Feb 21, 2026", impressions: 12332, clicks: 326, revenue: 79.22, ctr: "2.64%", ecpm: "74" },
+    { date: "Feb 22, 2026", impressions: 5434, clicks: 156, revenue: 31.98, ctr: "2.87%", ecpm: "77.98" },
   ]
 
   const recentActivityData = [
-    { date: "Feb 21, 2026", impressions: 6344, clicks: 165, revenue: 34.84, ctr: "2.60%", ecpm: "76.86" },
+    { date: "Feb 22, 2026", impressions: 5434, clicks: 156, revenue: 31.98, ctr: "2.87%", ecpm: "77.98" },
+    { date: "Feb 21, 2026", impressions: 12332, clicks: 326, revenue: 79.22, ctr: "2.64%", ecpm: "74" },
     { date: "Feb 20, 2026", impressions: 12344, clicks: 285, revenue: 71.84, ctr: "2.31%", ecpm: "76.56" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
     { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "24" },
     { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "20" },
-    { date: "Feb 15, 2026", impressions: 10800, clicks: 88, revenue: 27, ctr: "0.81%", ecpm: "18" },
     { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "16" },
     { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "14" },
     { date: "Feb 12, 2026", impressions: 8970, clicks: 79, revenue: 20, ctr: "0.88%", ecpm: "12" },
   ]
 
   const latestActivity = {
-    date: "Feb 21, 2026",
-    revenue: 34.84,
-    impressions: 6344,
-    clicks: 165,
-    ctr: "2.60%",
-    ecpm: "76.86",
+    date: "Feb 22, 2026",
+    revenue: 31.98,
+    impressions: 5434,
+    clicks: 156,
+    ctr: "2.87%",
+    ecpm: "77.98",
   }
 
-  const todayRevenue = 34.84
-  const todayImpressions = 6344
-  const todayClicks = 165
-  const todayCTR = "2.60"
-  const todayECPM = "76.86"
+  const todayRevenue = 31.98
+  const todayImpressions = 5434
+  const todayClicks = 156
+  const todayCTR = "2.87"
+  const todayECPM = "77.98"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -652,10 +653,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  // FORCE UPDATE: Using Feb 12-21 totals
-  const displayTotalRevenue = 391.60 // Updated with Feb 21 value (356.76 + 34.84)
-  const displayTotalClicks = 965 // Updated Feb 12-21 total (800 + 165)
-  const displayTotalImpressions = 102034 // Updated Feb 12-21 total (95690 + 6344)
+  // FORCE UPDATE: Using Feb 12-22 totals
+  const displayTotalRevenue = 463.74 // Updated with Feb 21-22 values
+  const displayTotalClicks = 1447 // Updated Feb 12-22 total
+  const displayTotalImpressions = 113800 // Updated Feb 12-22 total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
@@ -968,7 +969,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">This Month</span>
-                    <span className="text-xl font-bold text-green-600">${(356.76).toFixed(2)}</span>
+                    <span className="text-xl font-bold text-green-600">${(432.76).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
