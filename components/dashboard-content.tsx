@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 482.54
+  const availableBalance = 505.54
   const pendingBalance = 0
-  const thisMonthEarnings = 509.75
+  const thisMonthEarnings = 533.74
   const totalPayments = 0
-  const totalEarnings = 540.73
+  const totalEarnings = 564.72
   const nextWithdrawalDate = ""
 
   const allReportData = [
@@ -98,15 +98,16 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 20, 2026", impressions: 12344, clicks: 285, revenue: 71.84, ctr: "2.31%", ecpm: "76.56" },
     { date: "Feb 21, 2026", impressions: 12332, clicks: 326, revenue: 79.22, ctr: "2.64%", ecpm: "74" },
     { date: "Feb 22, 2026", impressions: 13634, clicks: 342, revenue: 76.99, ctr: "2.51%", ecpm: "77.98" },
+    { date: "Feb 23, 2026", impressions: 4334, clicks: 143, revenue: 23.99, ctr: "3.30%", ecpm: "77.98" },
   ]
 
   const recentActivityData = [
+    { date: "Feb 23, 2026", impressions: 4334, clicks: 143, revenue: 23.99, ctr: "3.30%", ecpm: "77.98" },
     { date: "Feb 22, 2026", impressions: 13634, clicks: 342, revenue: 76.99, ctr: "2.51%", ecpm: "77.98" },
     { date: "Feb 21, 2026", impressions: 12332, clicks: 326, revenue: 79.22, ctr: "2.64%", ecpm: "74" },
     { date: "Feb 20, 2026", impressions: 12344, clicks: 285, revenue: 71.84, ctr: "2.31%", ecpm: "76.56" },
     { date: "Feb 19, 2026", impressions: 11000, clicks: 92, revenue: 67, ctr: "0.84%", ecpm: "28" },
     { date: "Feb 18, 2026", impressions: 12000, clicks: 98, revenue: 31, ctr: "0.82%", ecpm: "31" },
-    { date: "Feb 17, 2026", impressions: 11800, clicks: 95, revenue: 30, ctr: "0.81%", ecpm: "24" },
     { date: "Feb 16, 2026", impressions: 11200, clicks: 91, revenue: 29, ctr: "0.81%", ecpm: "20" },
     { date: "Feb 14, 2026", impressions: 10020, clicks: 85, revenue: 25, ctr: "0.85%", ecpm: "16" },
     { date: "Feb 13, 2026", impressions: 9400, clicks: 82, revenue: 22, ctr: "0.87%", ecpm: "14" },
@@ -114,18 +115,18 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const latestActivity = {
-    date: "Feb 22, 2026",
-    revenue: 76.99,
-    impressions: 13634,
-    clicks: 342,
-    ctr: "2.51%",
+    date: "Feb 23, 2026",
+    revenue: 23.99,
+    impressions: 4334,
+    clicks: 143,
+    ctr: "3.30%",
     ecpm: "77.98",
   }
 
-  const todayRevenue = 76.99
-  const todayImpressions = 13634
-  const todayClicks = 342
-  const todayCTR = "2.51"
+  const todayRevenue = 23.99
+  const todayImpressions = 4334
+  const todayClicks = 143
+  const todayCTR = "3.30"
   const todayECPM = "77.98"
 
   const hourlyData = [
@@ -653,10 +654,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  // FORCE UPDATE: Using Feb 12-22 totals
-  const displayTotalRevenue = 540.73 // Updated with final Feb 22 value
-  const displayTotalClicks = 1789 // Updated Feb 12-22 total
-  const displayTotalImpressions = 127434 // Updated Feb 12-22 total
+  // FORCE UPDATE: Using Feb 12-23 totals
+  const displayTotalRevenue = 564.72 // Updated with Feb 23 value
+  const displayTotalClicks = 1938 // Updated Feb 12-23 total
+  const displayTotalImpressions = 145768 // Updated Feb 12-23 total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
@@ -969,7 +970,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">This Month</span>
-                    <span className="text-xl font-bold text-green-600">${(509.75).toFixed(2)}</span>
+                    <span className="text-xl font-bold text-green-600">${(533.74).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
