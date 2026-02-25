@@ -63,7 +63,20 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const [selectedPaymentEntry, setSelectedPaymentEntry] = useState<any>(null)
   const { kycStatus, openKycPromptModal } = useKyc()
 
-  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([])
+  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
+    {
+      id: "wd-25feb",
+      date: "25 Feb 2026",
+      method: "Payoneer",
+      amount: "$544.52",
+      status: "Pending",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$573.18",
+      fee: "$28.66",
+      feePercentage: 5,
+      processingTime: "8-10 days",
+    },
+  ])
 
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
