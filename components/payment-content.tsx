@@ -136,11 +136,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   }, [withdrawalHistory])
 
   const availableBalance = 604.18
-  const pendingBalance = 0
+  const pendingBalance = 544.52
   const totalEarnings = 604.18
-  const totalPayments = 0
+  const totalPayments = 573.18
   const thisMonthEarnings = 604.18
-  const nextWithdrawalDate = ""
+  const nextWithdrawalDate = "12 Mar 2026"
 
   const paymentEntries = []
 

@@ -9,7 +9,7 @@ interface WithdrawalRowProps {
   date: string
   method: string
   amount: string
-  status: "withdrawn" | "scheduled" | "failed" | "confirmed" | "refunded"
+  status: "withdrawn" | "scheduled" | "failed" | "confirmed" | "refunded" | "pending"
   details: string
   isVerified?: boolean
   note?: string
@@ -36,6 +36,11 @@ export function WithdrawalRow({
       icon: CheckCircle,
       color: "text-green-500 bg-green-50",
       label: "Confirmed",
+    },
+    pending: {
+      icon: Clock,
+      color: "text-orange-500 bg-orange-50",
+      label: "Pending — 8-10 days",
     },
     scheduled: {
       icon: Clock,
