@@ -120,14 +120,14 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = {
     date: "Feb 25, 2026",
-    revenue: 49.56,
+    revenue: 49.54,
     impressions: 8764,
     clicks: 361,
     ctr: "4.12%",
     ecpm: "79.66",
   }
 
-  const todayRevenue = 49.56
+  const todayRevenue = 49.54
   const todayImpressions = 8764
   const todayClicks = 361
   const todayCTR = "4.12"
