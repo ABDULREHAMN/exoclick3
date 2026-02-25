@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 605.54
+  const availableBalance = 535.54
   const pendingBalance = 0
-  const thisMonthEarnings = 465.76
+  const thisMonthEarnings = 536.76
   const totalPayments = 0
-  const totalEarnings = 605.34
+  const totalEarnings = 535.34
   const nextWithdrawalDate = ""
 
   const allReportData = [
@@ -99,11 +99,13 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 21, 2026", impressions: 12332, clicks: 326, revenue: 79.22, ctr: "2.64%", ecpm: "74" },
     { date: "Feb 22, 2026", impressions: 13634, clicks: 342, revenue: 76.99, ctr: "2.51%", ecpm: "77.98" },
     { date: "Feb 23, 2026", impressions: 12345, clicks: 324, revenue: 76.00, ctr: "2.62%", ecpm: "77.98" },
-    { date: "Feb 24, 2026", impressions: 4234, clicks: 145, revenue: 24.97, ctr: "3.42%", ecpm: "77.98" },
+    { date: "Feb 24, 2026", impressions: 12695, clicks: 336, revenue: 75.00, ctr: "2.65%", ecpm: "77.98" },
+    { date: "Feb 25, 2026", impressions: 5654, clicks: 301, revenue: 31.97, ctr: "5.32%", ecpm: "78.99" },
   ]
 
   const recentActivityData = [
-    { date: "Feb 24, 2026", impressions: 4234, clicks: 145, revenue: 24.97, ctr: "3.42%", ecpm: "77.98" },
+    { date: "Feb 25, 2026", impressions: 5654, clicks: 301, revenue: 31.97, ctr: "5.32%", ecpm: "78.99" },
+    { date: "Feb 24, 2026", impressions: 12695, clicks: 336, revenue: 75.00, ctr: "2.65%", ecpm: "77.98" },
     { date: "Feb 23, 2026", impressions: 12345, clicks: 324, revenue: 76.00, ctr: "2.62%", ecpm: "77.98" },
     { date: "Feb 22, 2026", impressions: 13634, clicks: 342, revenue: 76.99, ctr: "2.51%", ecpm: "77.98" },
     { date: "Feb 21, 2026", impressions: 12332, clicks: 326, revenue: 79.22, ctr: "2.64%", ecpm: "74" },
@@ -117,19 +119,19 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const latestActivity = {
-    date: "Feb 24, 2026",
-    revenue: 24.97,
-    impressions: 4234,
-    clicks: 145,
-    ctr: "3.42%",
-    ecpm: "77.98",
+    date: "Feb 25, 2026",
+    revenue: 31.97,
+    impressions: 5654,
+    clicks: 301,
+    ctr: "5.32%",
+    ecpm: "78.99",
   }
 
-  const todayRevenue = 24.97
-  const todayImpressions = 4234
-  const todayClicks = 145
-  const todayCTR = "3.42"
-  const todayECPM = "77.98"
+  const todayRevenue = 31.97
+  const todayImpressions = 5654
+  const todayClicks = 301
+  const todayCTR = "5.32"
+  const todayECPM = "78.99"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -656,10 +658,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  // FORCE UPDATE: Using Feb 12-24 totals
-  const displayTotalRevenue = 589.73 // Updated with Feb 23-24 values
-  const displayTotalClicks = 2152 // Updated Feb 12-24 total
-  const displayTotalImpressions = 154002 // Updated Feb 12-24 total
+  // FORCE UPDATE: Using Feb 12-25 totals
+  const displayTotalRevenue = 621.70 // Updated with Feb 24-25 values
+  const displayTotalClicks = 2453 // Updated Feb 12-25 total
+  const displayTotalImpressions = 168236 // Updated Feb 12-25 total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
@@ -972,7 +974,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">This Month</span>
-                    <span className="text-xl font-bold text-green-600">${(465.76).toFixed(2)}</span>
+                    <span className="text-xl font-bold text-green-600">${(536.76).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
