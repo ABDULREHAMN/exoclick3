@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 1326.54
+  const availableBalance = 343.54
   const pendingBalance = 544.52
-  const thisMonthEarnings = 2260.58
+  const thisMonthEarnings = 19.89
   const totalPayments = 573.18
-  const totalEarnings = 3084.84
+  const totalEarnings = 840.34
   const nextWithdrawalDate = "12 Mar 2026"
 
   const allReportData = [
@@ -129,11 +129,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 26, 2026", impressions: 13244, clicks: 324, revenue: 86.69, ctr: "2.45%", ecpm: "91.99" },
     { date: "Feb 27, 2026", impressions: 13566, clicks: 340, revenue: 83.34, ctr: "2.51%", ecpm: "90.37" },
     { date: "Feb 28, 2026", impressions: 13453, clicks: 341, revenue: 83.12, ctr: "2.53%", ecpm: "92.77" },
-    { date: "Mar 1, 2026", impressions: 455, clicks: 8, revenue: 3.19, ctr: "1.76%", ecpm: "92.11" },
+    { date: "Mar 1, 2026", impressions: 3455, clicks: 102, revenue: 19.89, ctr: "2.95%", ecpm: "82.55" },
   ]
 
   const recentActivityData = [
-    { date: "Mar 1, 2026", impressions: 402, clicks: 8, revenue: 2.11, ctr: "1.99%", ecpm: "82.55" },
+    { date: "Mar 1, 2026", impressions: 3455, clicks: 102, revenue: 19.89, ctr: "2.95%", ecpm: "82.55" },
     { date: "Feb 28, 2026", impressions: 13267, clicks: 340, revenue: 80.22, ctr: "2.56%", ecpm: "81.22" },
     { date: "Feb 27, 2026", impressions: 13780, clicks: 347, revenue: 80.77, ctr: "2.52%", ecpm: "82.11" },
     { date: "Feb 26, 2026", impressions: 12345, clicks: 320, revenue: 81.56, ctr: "2.59%", ecpm: "81.86" },
@@ -151,18 +151,18 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = {
     date: "Mar 1, 2026",
-    revenue: 3.19,
-    impressions: 455,
-    clicks: 8,
-    ctr: "1.76%",
-    ecpm: "92.11",
+    revenue: 19.89,
+    impressions: 3455,
+    clicks: 102,
+    ctr: "2.95%",
+    ecpm: "82.55",
   }
 
-  const todayRevenue = 3.19
-  const todayImpressions = 455
-  const todayClicks = 8
-  const todayCTR = "1.76"
-  const todayECPM = "92.11"
+  const todayRevenue = 19.89
+  const todayImpressions = 3455
+  const todayClicks = 102
+  const todayCTR = "2.95"
+  const todayECPM = "82.55"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -179,9 +179,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 455,
-    clicks: 8,
-    revenue: 3.19,
+    impressions: 3455,
+    clicks: 102,
+    revenue: 19.89,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
@@ -689,10 +689,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  // FORCE UPDATE: Using complete dataset Dec 18 2025 - Mar 1 2026
-  const displayTotalRevenue = 2264.77 // Updated with complete dataset
-  const displayTotalClicks = 6914 // Updated complete total
-  const displayTotalImpressions = 465976 // Updated complete total
+  // FORCE UPDATE: Using March 1, 2026 totals
+  const displayTotalRevenue = 2284.66 // Updated with Mar 1 value
+  const displayTotalClicks = 7016 // Updated total
+  const displayTotalImpressions = 469431 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
@@ -1009,7 +1009,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
-                    <span className="text-lg font-semibold text-gray-700">$820.22</span>
+                    <span className="text-lg font-semibold text-gray-700">$820.50</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Growth Rate</span>
