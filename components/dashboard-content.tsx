@@ -984,7 +984,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
-                    <span className="text-lg font-semibold text-gray-700">$0.00</span>
+                    <span className="text-lg font-semibold text-gray-700">$820.22</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Growth Rate</span>
