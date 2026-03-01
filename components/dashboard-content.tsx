@@ -1257,7 +1257,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <StatsCard title="TODAY" value={`$${todayTotals.revenue.toFixed(2)}`} />
         <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(3)}`} />
-        <StatsCard title="LAST MONTH" value="$0.00" />
+        <StatsCard title="LAST MONTH" value="$820.50" />
         <StatsCard
           title="THIS MONTH FORECAST"
           value="$508+"
