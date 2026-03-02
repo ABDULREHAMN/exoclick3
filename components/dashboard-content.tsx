@@ -137,6 +137,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Mar 2, 2026", impressions: 5432, clicks: 189, revenue: 39.41, ctr: "3.48%", ecpm: "88.55" },
     { date: "Mar 1, 2026", impressions: 13425, clicks: 365, revenue: 81.55, ctr: "2.72%", ecpm: "82.23" },
   ]
+  
+  console.log("[v0] Recent Activity Data:", recentActivityData)
 
   const latestActivity = {
     date: "Mar 2, 2026",
@@ -1670,18 +1672,29 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
               </thead>
               <tbody>
                 {/* Update Recent Activity to use filtered data (show last 10) */}
-                {recentActivityData.map((item, index) => (
-                  <RecentActivityRow
-                    key={index}
-                    date={item.date}
-                    domain="eduinfomi.com"
-                    impressions={item.impressions}
-                    clicks={item.clicks}
-                    ctr={item.ctr}
-                    ecpm={item.ecpm}
-                    revenue={item.revenue}
-                  />
-                ))}
+                {recentActivityData && recentActivityData.length > 0 ? (
+                  recentActivityData.map((item, index) => {
+                    console.log("[v0] Rendering activity item:", item)
+                    return (
+                      <RecentActivityRow
+                        key={index}
+                        date={item.date}
+                        domain="eduinfomi.com"
+                        impressions={item.impressions}
+                        clicks={item.clicks}
+                        ctr={item.ctr}
+                        ecpm={item.ecpm}
+                        revenue={item.revenue}
+                      />
+                    )
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan={7} className="py-3 px-4 text-center text-sm text-gray-500">
+                      No recent activity data
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
