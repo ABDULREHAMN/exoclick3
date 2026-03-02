@@ -136,6 +136,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const recentActivityData = [
     { date: "Mar 3, 2026", impressions: 564, clicks: 9, revenue: 3.12, ctr: "1.60%", ecpm: "88.34" },
     { date: "Mar 2, 2026", impressions: 13456, clicks: 356, revenue: 83.43, ctr: "2.65%", ecpm: "89.22" },
+    { date: "Mar 1, 2026", impressions: 13425, clicks: 365, revenue: 81.55, ctr: "2.72%", ecpm: "82.23" },
   ]
   
   console.log("[v0] Recent Activity Data:", recentActivityData)
