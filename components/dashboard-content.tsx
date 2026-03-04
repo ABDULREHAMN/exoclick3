@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 559.54
+  const availableBalance = 580.76
   const pendingBalance = 544.52
-  const thisMonthEarnings = 245.65
-  const totalPayments = 1055.34
-  const totalEarnings = 1055.34
+  const thisMonthEarnings = 266.37
+  const totalPayments = 1076.92
+  const totalEarnings = 1076.92
   const nextWithdrawalDate = "12 Mar 2026"
 
   const allReportData = [
@@ -134,8 +134,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const recentActivityData = [
-    { date: "Mar 4, 2026", impressions: 765, clicks: 8, revenue: 2.32, ctr: "1.05%", ecpm: "83.11" },
-    { date: "Mar 3, 2026", impressions: 8763, clicks: 230, revenue: 62.12, ctr: "2.62%", ecpm: "88.82" },
+    { date: "Mar 4, 2026", impressions: 4213, clicks: 198, revenue: 23.35, ctr: "4.70%", ecpm: "83.76" },
+    { date: "Mar 3, 2026", impressions: 13623, clicks: 348, revenue: 86.55, ctr: "2.55%", ecpm: "86.91" },
     { date: "Mar 2, 2026", impressions: 13544, clicks: 340, revenue: 84.55, ctr: "2.51%", ecpm: "86.34" },
     { date: "Mar 1, 2026", impressions: 13425, clicks: 365, revenue: 81.55, ctr: "2.72%", ecpm: "82.23" },
   ]
@@ -144,18 +144,18 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = {
     date: "Mar 4, 2026",
-    revenue: 2.32,
-    impressions: 765,
-    clicks: 8,
-    ctr: "1.05%",
-    ecpm: "83.11",
+    revenue: 23.35,
+    impressions: 4213,
+    clicks: 198,
+    ctr: "4.70%",
+    ecpm: "83.76",
   }
 
-  const todayRevenue = 2.32
-  const todayImpressions = 765
-  const todayClicks = 8
-  const todayCTR = "1.05"
-  const todayECPM = "83.11"
+  const todayRevenue = 23.35
+  const todayImpressions = 4213
+  const todayClicks = 198
+  const todayCTR = "4.70"
+  const todayECPM = "83.76"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -172,9 +172,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 765,
-    clicks: 8,
-    revenue: 2.32,
+    impressions: 4213,
+    clicks: 198,
+    revenue: 23.35,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
@@ -683,9 +683,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
   // FORCE UPDATE: Using final latest Mar 1, 2026 totals
-  const displayTotalRevenue = 1055.34 // Updated with revised Mar 2 & new Mar 4
-  const displayTotalClicks = 8241 // Updated total
-  const displayTotalImpressions = 539762 // Updated total
+  const displayTotalRevenue = 1076.92 // Updated with revised Mar 3 & new Mar 4
+  const displayTotalClicks = 8351 // Updated total
+  const displayTotalImpressions = 544818 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
