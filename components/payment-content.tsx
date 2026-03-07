@@ -68,10 +68,10 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       id: "wd-25feb",
       date: "25 Feb 2026",
       method: "Payoneer",
-      amount: "$1315.92",
+      amount: "$1332.92",
       status: "Pending",
       details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$1315.92",
+      grossAmount: "$1332.92",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "8-10 days",
@@ -148,11 +148,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 807.76
+  const availableBalance = 834.76
   const pendingBalance = 0
-  const totalEarnings = 1315.92
-  const totalPayments = 1315.92
-  const thisMonthEarnings = 577.32
+  const totalEarnings = 1332.92
+  const totalPayments = 1332.92
+  const thisMonthEarnings = 632.32
   const nextWithdrawalDate = "12 Mar 2026"
   
   console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance)
