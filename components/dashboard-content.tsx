@@ -79,9 +79,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 971.76
+  const availableBalance = 991.76
   const pendingBalance = 0
-  const thisMonthEarnings = 771.82
+  const thisMonthEarnings = 791.82
   const totalPayments = 1471.92
   const totalEarnings = 1471.92
   const nextWithdrawalDate = "12 Mar 2026"
@@ -149,17 +149,17 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = {
     date: "Mar 9, 2026",
-    revenue: 33.12,
-    impressions: 5642,
-    clicks: 145,
-    ctr: "2.57%",
+    revenue: 53.12,
+    impressions: 8762,
+    clicks: 201,
+    ctr: "2.29%",
     ecpm: "85.11",
   }
 
-  const todayRevenue = 33.12
-  const todayImpressions = 5642
-  const todayClicks = 145
-  const todayCTR = "2.57"
+  const todayRevenue = 53.12
+  const todayImpressions = 8762
+  const todayClicks = 201
+  const todayCTR = "2.29"
   const todayECPM = "85.11"
 
   const hourlyData = [
@@ -177,9 +177,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 5642,
-    clicks: 145,
-    revenue: 33.12,
+    impressions: 8762,
+    clicks: 201,
+    revenue: 53.12,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
@@ -689,8 +689,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   // Display totals - use calculated when filters are active, otherwise use fixed totals
   // FORCE UPDATE: Using final latest Mar 1, 2026 totals
   const displayTotalRevenue = 1471.92 // Updated with latest Mar 9
-  const displayTotalClicks = 10119 // Updated total
-  const displayTotalImpressions = 622557 // Updated total
+  const displayTotalClicks = 10320 // Updated total
+  const displayTotalImpressions = 631319 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
