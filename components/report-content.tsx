@@ -10,7 +10,8 @@ const reportData = {
   "Last 7 Days": {
     "All Countries": {
       "All Devices": [
-        { date: "Mar 9, 2026", impressions: "8,762", clicks: "201", ctr: "2.29%", ecpm: "$85.11", revenue: "$53.12" },
+        { date: "Mar 10, 2026", impressions: "842", clicks: "5", ctr: "0.59%", ecpm: "$85.11", revenue: "$2.12" },
+        { date: "Mar 9, 2026", impressions: "12,324", clicks: "343", ctr: "2.78%", ecpm: "$86.44", revenue: "$83.55" },
         { date: "Mar 8, 2026", impressions: "7,653", clicks: "146", ctr: "1.91%", ecpm: "$85.11", revenue: "$84.55" },
         { date: "Mar 7, 2026", impressions: "12,424", clicks: "342", ctr: "2.75%", ecpm: "$81.55", revenue: "$81.55" },
         { date: "Mar 6, 2026", impressions: "12,525", clicks: "321", ctr: "2.56%", ecpm: "$82.11", revenue: "$82.66" },
@@ -315,10 +316,10 @@ const reportData = {
 }
 
 const statisticsTotals = {
-  impressions: 631319,
-  clicks: 10320,
-  revenue: 1471.92,
-  ecpm: 28.88,
+  impressions: 632161,
+  clicks: 10325,
+  revenue: 1521.92,
+  ecpm: 28.89,
   ctr: 1.63,
 }
 
