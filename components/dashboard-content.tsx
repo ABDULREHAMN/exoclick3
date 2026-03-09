@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 441.76
+  const availableBalance = 971.76
   const pendingBalance = 0
-  const thisMonthEarnings = 741.82
-  const totalPayments = 1441.92
-  const totalEarnings = 1441.92
+  const thisMonthEarnings = 771.82
+  const totalPayments = 1471.92
+  const totalEarnings = 1471.92
   const nextWithdrawalDate = "12 Mar 2026"
 
   const allReportData = [
@@ -149,17 +149,17 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const latestActivity = {
     date: "Mar 9, 2026",
-    revenue: 3.12,
-    impressions: 762,
-    clicks: 11,
-    ctr: "1.44%",
+    revenue: 33.12,
+    impressions: 5642,
+    clicks: 145,
+    ctr: "2.57%",
     ecpm: "85.11",
   }
 
-  const todayRevenue = 3.12
-  const todayImpressions = 762
-  const todayClicks = 11
-  const todayCTR = "1.44"
+  const todayRevenue = 33.12
+  const todayImpressions = 5642
+  const todayClicks = 145
+  const todayCTR = "2.57"
   const todayECPM = "85.11"
 
   const hourlyData = [
@@ -177,9 +177,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 762,
-    clicks: 11,
-    revenue: 3.12,
+    impressions: 5642,
+    clicks: 145,
+    revenue: 33.12,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
@@ -688,9 +688,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
   // FORCE UPDATE: Using final latest Mar 1, 2026 totals
-  const displayTotalRevenue = 1441.92 // Updated with revised Mar 8 & new Mar 9
-  const displayTotalClicks = 9974 // Updated total
-  const displayTotalImpressions = 616915 // Updated total
+  const displayTotalRevenue = 1471.92 // Updated with latest Mar 9
+  const displayTotalClicks = 10119 // Updated total
+  const displayTotalImpressions = 622557 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
