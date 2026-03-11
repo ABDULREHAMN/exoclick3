@@ -22,12 +22,12 @@ export function WithdrawalHistory() {
     {
       date: "25 Feb 2026",
       method: "Payoneer",
-      amount: 544.52,
+      amount: 573.18,
       status: "confirmed",
       details: "abdul.rehman.soashraf@gmail.com",
       isVerified: true,
       grossAmount: 573.18,
-      fee: 28.66,
+      fee: 0,
       processingTime: "8-10 days",
     },
     {
@@ -109,14 +109,6 @@ function WithdrawalRow({ date, method, amount, status, details, isVerified }: Wi
     confirmed: { icon: CheckCircle, color: "text-green-500 bg-green-50", label: "Confirmed" },
     scheduled: { icon: Clock, color: "text-yellow-500 bg-yellow-50", label: "Pending" },
     processing: { icon: Clock, color: "text-blue-500 bg-blue-50", label: "Processing" },
-    failed: { icon: AlertTriangle, color: "text-red-500 bg-red-50", label: "Failed" },
-  }
-
-function WithdrawalRow({ date, method, amount, status, details, isVerified }: WithdrawalRowProps) {
-  const statusConfig = {
-    withdrawn: { icon: Check, color: "text-green-500 bg-green-50", label: "Withdrawn" },
-    confirmed: { icon: CheckCircle, color: "text-green-500 bg-green-50", label: "Confirmed" },
-    scheduled: { icon: Clock, color: "text-yellow-500 bg-yellow-50", label: "Pending" },
     failed: { icon: AlertTriangle, color: "text-red-500 bg-red-50", label: "Failed" },
   }
 

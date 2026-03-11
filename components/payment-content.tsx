@@ -65,15 +65,27 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
+      id: "wd-12mar",
+      date: "12 Mar 2026",
+      method: "Payoneer",
+      amount: "$1012.00",
+      status: "Processing",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$1012.00",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "8-10 days",
+    },
+    {
       id: "wd-25feb",
       date: "25 Feb 2026",
       method: "Payoneer",
-      amount: "$544.52",
+      amount: "$573.18",
       status: "Completed",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$573.18",
-      fee: "$28.66",
-      feePercentage: 5,
+      fee: "$0.00",
+      feePercentage: 0,
       processingTime: "8-10 days",
     },
   ])
