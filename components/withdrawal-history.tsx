@@ -12,7 +12,7 @@ export function WithdrawalHistory() {
       date: "25 Feb 2026",
       method: "Payoneer",
       amount: 544.52,
-      status: "pending",
+      status: "confirmed",
       details: "abdul.rehman.soashraf@gmail.com",
       isVerified: true,
       grossAmount: 573.18,
