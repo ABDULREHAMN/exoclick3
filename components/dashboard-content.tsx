@@ -82,8 +82,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const availableBalance = 204.12
   const pendingBalance = 1012.00
   const thisMonthEarnings = 1014.12
-  const totalPayments = 1714.12
-  const totalEarnings = 1714.12
+  const totalPayments = 1585.18
+  const totalEarnings = 1585.18
   const nextWithdrawalDate = "25 Mar 2026"
 
   const allReportData = [
