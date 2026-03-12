@@ -9,14 +9,31 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 export function WithdrawalHistory() {
   const withdrawals = [
     {
+      date: "12 Mar 2026",
+      method: "Payoneer",
+      amount: 1012.00,
+      status: "processing",
+      details: "abdul.rehman.soashraf@gmail.com",
+      isVerified: true,
+      grossAmount: 1012.00,
+      fee: 0,
+      processingTime: "8-10 days",
+      statusProgression: [
+        { step: "Withdrawal Requested", status: "pending", duration: "0-1 days" },
+        { step: "Under Review", status: "pending", duration: "1-2 days" },
+        { step: "Sent to Payoneer", status: "pending", duration: "1-2 days" },
+        { step: "Funds Received", status: "pending", duration: "2-3 days" },
+      ],
+    },
+    {
       date: "25 Feb 2026",
       method: "Payoneer",
-      amount: 544.52,
+      amount: 573.18,
       status: "confirmed",
       details: "abdul.rehman.soashraf@gmail.com",
       isVerified: true,
       grossAmount: 573.18,
-      fee: 28.66,
+      fee: 0,
       processingTime: "8-10 days",
     },
     {
@@ -68,7 +85,7 @@ export function WithdrawalHistory() {
                 date={withdrawal.date}
                 method={withdrawal.method}
                 amount={`$${withdrawal.amount.toFixed(2)}`}
-                status={withdrawal.status as "withdrawn" | "scheduled" | "failed" | "confirmed" | "pending"}
+                status={withdrawal.status as "withdrawn" | "scheduled" | "failed" | "confirmed" | "pending" | "processing"}
                 details={withdrawal.details}
                 isVerified={withdrawal.isVerified}
               />
@@ -87,7 +104,7 @@ interface WithdrawalRowProps {
   date: string
   method: string
   amount: string
-  status: "withdrawn" | "scheduled" | "failed" | "confirmed"
+  status: "withdrawn" | "scheduled" | "failed" | "confirmed" | "pending" | "processing"
   details: string
   isVerified?: boolean
 }
@@ -97,6 +114,7 @@ function WithdrawalRow({ date, method, amount, status, details, isVerified }: Wi
     withdrawn: { icon: Check, color: "text-green-500 bg-green-50", label: "Withdrawn" },
     confirmed: { icon: CheckCircle, color: "text-green-500 bg-green-50", label: "Confirmed" },
     scheduled: { icon: Clock, color: "text-yellow-500 bg-yellow-50", label: "Pending" },
+    processing: { icon: Clock, color: "text-blue-500 bg-blue-50", label: "Processing" },
     failed: { icon: AlertTriangle, color: "text-red-500 bg-red-50", label: "Failed" },
   }
 

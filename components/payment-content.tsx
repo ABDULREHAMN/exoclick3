@@ -65,15 +65,27 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
+      id: "wd-12mar",
+      date: "12 Mar 2026",
+      method: "Payoneer",
+      amount: "$1012.00",
+      status: "Processing",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$1012.00",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "8-10 days",
+    },
+    {
       id: "wd-25feb",
       date: "25 Feb 2026",
       method: "Payoneer",
-      amount: "$544.52",
+      amount: "$573.18",
       status: "Completed",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$573.18",
-      fee: "$28.66",
-      feePercentage: 5,
+      fee: "$0.00",
+      feePercentage: 0,
       processingTime: "8-10 days",
     },
   ])
@@ -148,12 +160,12 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 1184.12
-  const pendingBalance = 0
-  const totalEarnings = 1684.12
-  const totalPayments = 1684.12
-  const thisMonthEarnings = 984.12
-  const nextWithdrawalDate = "12 Mar 2026"
+  const availableBalance = 204.12
+  const pendingBalance = 1012.00
+  const totalEarnings = 1585.18
+  const totalPayments = 1585.18
+  const thisMonthEarnings = 1014.12
+  const nextWithdrawalDate = "25 Mar 2026"
   
   console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance)
 
