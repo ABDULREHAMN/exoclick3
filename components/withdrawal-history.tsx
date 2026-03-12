@@ -19,9 +19,9 @@ export function WithdrawalHistory() {
       fee: 0,
       processingTime: "8-10 days",
       statusProgression: [
-        { step: "Withdrawal Requested", status: "completed", duration: "0-1 days" },
-        { step: "Under Review", status: "completed", duration: "1-2 days" },
-        { step: "Sent to Payoneer", status: "completed", duration: "1-2 days" },
+        { step: "Withdrawal Requested", status: "pending", duration: "0-1 days" },
+        { step: "Under Review", status: "pending", duration: "1-2 days" },
+        { step: "Sent to Payoneer", status: "pending", duration: "1-2 days" },
         { step: "Funds Received", status: "pending", duration: "2-3 days" },
       ],
     },
