@@ -152,22 +152,22 @@ This invoice is digitally signed and verified.
   const timelineSteps = [
     {
       step: "Withdrawal Requested",
-      status: "Pending",
+      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Completed",
       date: withdrawal?.date,
     },
     {
       step: "Under Review",
-      status: "Pending",
+      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Completed",
       date: null,
     },
     {
       step: "Sent to Payoneer",
-      status: "Pending",
+      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Pending",
       date: null,
     },
     {
       step: "Funds Received",
-      status: "Pending",
+      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Pending",
       date: null,
     },
   ]
