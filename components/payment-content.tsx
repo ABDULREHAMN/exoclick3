@@ -160,11 +160,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 1304.11
+  const availableBalance = 1423.02
   const pendingBalance = 1012.00
-  const totalEarnings = 2804.68
+  const totalEarnings = 2923.59
   const totalPayments = 1585.18
-  const thisMonthEarnings = 2104.91
+  const thisMonthEarnings = 2223.82
   const nextWithdrawalDate = "29 Mar 2026"
   
   console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance)

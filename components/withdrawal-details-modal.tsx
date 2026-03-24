@@ -162,12 +162,12 @@ This invoice is digitally signed and verified.
     },
     {
       step: "Sent to Payoneer",
-      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Completed",
       date: null,
     },
     {
       step: "Funds Received",
-      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-25feb" ? "Completed" : "Completed",
       date: null,
     },
   ]
