@@ -69,7 +69,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       date: "12 Mar 2026",
       method: "Payoneer",
       amount: "$1012.00",
-      status: "In Progress",
+      status: "Completed",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$1012.00",
       fee: "$0.00",
@@ -161,7 +161,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   }, [withdrawalHistory])
 
   const availableBalance = 1423.02
-  const pendingBalance = 1012.00
+  const pendingBalance = 0.00
   const totalEarnings = 2923.59
   const totalPayments = 1585.18
   const thisMonthEarnings = 2223.82
