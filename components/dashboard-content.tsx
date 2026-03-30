@@ -79,11 +79,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 191.30
+  const availableBalance = 210.00
   const pendingBalance = 1410.00
-  const thisMonthEarnings = 2799.72
+  const thisMonthEarnings = 2803.41
   const totalPayments = 1585.18
-  const totalEarnings = 3499.49
+  const totalEarnings = 3503.18
   const nextWithdrawalDate = "29 Mar 2026"
 
   const allReportData = [
@@ -135,7 +135,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const recentActivityData = [
     { date: "Mar 30, 2026", impressions: 4500, clicks: 195, revenue: 30.00, ctr: "4.33%", ecpm: "94.35" },
-    { date: "Mar 29, 2026", impressions: 4280, clicks: 190, revenue: 28.31, ctr: "4.44%", ecpm: "93.31" },
+    { date: "Mar 29, 2026", impressions: 12880, clicks: 345, revenue: 83.31, ctr: "2.68%", ecpm: "93.31" },
     { date: "Mar 28, 2026", impressions: 12280, clicks: 325, revenue: 82.35, ctr: "2.65%", ecpm: "87.97" },
     { date: "Mar 27, 2026", impressions: 12300, clicks: 341, revenue: 81.31, ctr: "2.77%", ecpm: "86.76" },
     { date: "Mar 26, 2026", impressions: 12380, clicks: 349, revenue: 83.31, ctr: "2.82%", ecpm: "90.41" },
@@ -687,9 +687,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
   // FORCE UPDATE: Using final latest Mar 1, 2026 totals
-  const displayTotalRevenue = 3499.49 // Final sync Mar 27-30 with withdrawal
-  const displayTotalClicks = 17270 // Updated total
-  const displayTotalImpressions = 885894 // Updated total
+  const displayTotalRevenue = 3503.18 // Final sync Mar 29-30 fix
+  const displayTotalClicks = 17509 // Updated total
+  const displayTotalImpressions = 888774 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
