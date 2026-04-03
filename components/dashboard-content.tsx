@@ -79,12 +79,12 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 535.66
+  const availableBalance = 688.97
   const pendingBalance = 1410.00
-  const thisMonthEarnings = 127.00
+  const thisMonthEarnings = 256.31
   const lastMonthEarnings = 2910.11
   const totalPayments = 1585.18
-  const totalEarnings = 3863.54
+  const totalEarnings = 4014.85
   const nextWithdrawalDate = "14 Apr 2026"
 
   const allReportData = [
@@ -135,25 +135,25 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const recentActivityData = [
-    { date: "Apr 02, 2026", impressions: 10120, clicks: 780, revenue: 46.30, ctr: "7.71%", ecpm: "210.00" },
+    { date: "Apr 03, 2026", impressions: 10780, clicks: 835, revenue: 41.31, ctr: "7.75%", ecpm: "315.00" },
   ]
   
   console.log("[v0] Recent Activity Data:", recentActivityData)
 
   const latestActivity = {
-    date: "Apr 02, 2026",
-    revenue: 46.30,
-    impressions: 10120,
-    clicks: 780,
-    ctr: "7.71%",
-    ecpm: "210.00",
+    date: "Apr 03, 2026",
+    revenue: 41.31,
+    impressions: 10780,
+    clicks: 835,
+    ctr: "7.75%",
+    ecpm: "315.00",
   }
 
-  const todayRevenue = 46.30
-  const todayImpressions = 10120
-  const todayClicks = 780
-  const todayCTR = "7.71"
-  const todayECPM = "210.00"
+  const todayRevenue = 41.31
+  const todayImpressions = 10780
+  const todayClicks = 835
+  const todayCTR = "7.75"
+  const todayECPM = "315.00"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -170,9 +170,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 10120,
-    clicks: 780,
-    revenue: 46.30,
+    impressions: 10780,
+    clicks: 835,
+    revenue: 41.31,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
@@ -681,9 +681,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
   // FORCE UPDATE: Using final latest Mar 1, 2026 totals
-  const displayTotalRevenue = 3863.54 // April update Apr 1-2
-  const displayTotalClicks = 19474 // Updated total
-  const displayTotalImpressions = 929114 // Updated total
+  const displayTotalRevenue = 4014.85 // April update Apr 2-3
+  const displayTotalClicks = 20089 // Updated total
+  const displayTotalImpressions = 948174 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
