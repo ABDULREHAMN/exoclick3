@@ -151,12 +151,12 @@ This invoice is digitally signed and verified.
   const timelineSteps = [
     {
       step: "Withdrawal Requested",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Completed",
+      status: "Completed",
       date: withdrawal?.date,
     },
     {
       step: "Under Review",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-29mar" ? "Completed" : (withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending"),
       date: null,
     },
     {
