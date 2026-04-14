@@ -156,22 +156,22 @@ This invoice is digitally signed and verified.
     },
     {
       step: "Under Review",
-      status: withdrawal?.id === "wd-29mar" ? "Completed" : (withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending"),
+      status: withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending",
       date: null,
     },
     {
       step: "Processing",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" || withdrawal?.id === "wd-29mar" ? "Completed" : "Pending",
       date: null,
     },
     {
       step: "Sent to Payoneer",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" || withdrawal?.id === "wd-29mar" ? "Completed" : "Pending",
       date: null,
     },
     {
       step: "Funds Received",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" || withdrawal?.id === "wd-29mar" ? "Completed" : "Pending",
       date: null,
     },
   ]
