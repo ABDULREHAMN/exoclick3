@@ -150,28 +150,38 @@ This invoice is digitally signed and verified.
 
   const timelineSteps = [
     {
-      step: "Withdrawal Requested",
+      step: "Requested",
       status: "Completed",
       date: withdrawal?.date,
     },
     {
       step: "Under Review",
-      status: withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending",
+      status: "Completed",
+      date: null,
+    },
+    {
+      step: "Verification",
+      status: "Completed",
       date: null,
     },
     {
       step: "Processing",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" || withdrawal?.id === "wd-29mar" ? "Completed" : "Pending",
+      status: "Completed",
+      date: null,
+    },
+    {
+      step: "Approval",
+      status: "Completed",
       date: null,
     },
     {
       step: "Sent to Payoneer",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" || withdrawal?.id === "wd-29mar" ? "Completed" : "Pending",
+      status: "Completed",
       date: null,
     },
     {
       step: "Funds Received",
-      status: withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" || withdrawal?.id === "wd-29mar" ? "Completed" : "Pending",
+      status: withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending"),
       date: null,
     },
   ]
@@ -293,7 +303,7 @@ This invoice is digitally signed and verified.
                           <CheckCircle className="h-4 w-4 text-white" />
                         </div>
                       ) : step.status === "Pending" ? (
-                        <div className="rounded-full bg-amber-500 p-1">
+                        <div className="rounded-full bg-yellow-500 p-1">
                           <Clock className="h-4 w-4 text-white" />
                         </div>
                       ) : (
@@ -313,7 +323,7 @@ This invoice is digitally signed and verified.
                           step.status === "Completed"
                             ? "bg-green-100 text-green-700 hover:bg-green-100"
                             : step.status === "Pending"
-                              ? "bg-amber-100 text-amber-700 hover:bg-amber-100"
+                              ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-100"
                               : `${accentBg} ${textSecondary} hover:${accentBg}`
                         }`}
                       >
