@@ -69,12 +69,14 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       date: "14 Apr 2026",
       method: "Payoneer",
       amount: "$12215.00",
-      status: "Pending",
+      status: "Failed",
+      reason: "Limit Issue",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$12215.00",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "8-10 days",
+      reversed: true,
     },
     {
       id: "wd-29mar",
@@ -147,8 +149,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
 
 
-  const availableBalance = 12261.40
-  const pendingBalance = 12215.00
+  const availableBalance = 24185.54
+  const pendingBalance = 0.00
   const totalEarnings = 27502.28
   const totalPayments = 13800.18
   const thisMonthEarnings = 20559.49
@@ -589,7 +591,9 @@ Generated on: ${new Date().toLocaleDateString()}
                                     ? "bg-green-100 text-green-800"
                                     : withdrawal.status === "Pending"
                                       ? "bg-yellow-100 text-yellow-800"
-                                      : "bg-gray-100 text-gray-800"
+                                      : withdrawal.status === "Failed"
+                                        ? "bg-red-100 text-red-800"
+                                        : "bg-gray-100 text-gray-800"
                                 }
                               >
                                 {withdrawal.status}
