@@ -29,14 +29,14 @@ export function PaymentMethods() {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([
     {
       id: "pm_1",
-      type: "payoneer",
-      displayName: "Payoneer",
-      details: "abdul.rehman.soashraf@gmail.com",
+      type: "crypto",
+      displayName: "SafePal USDT (BEP20)",
+      details: "0x60b407E52C41C51C9bAec7B2E62A8a6b9A900917",
       verified: true,
       isDefault: true,
-      addedDate: "Oct 1, 2025",
-      icon: "payoneer",
-      network: "Abdul Rehman",
+      addedDate: "Apr 29, 2026",
+      icon: "crypto",
+      network: "BEP20 Network - SafePal",
       status: "active",
     },
   ])
@@ -185,19 +185,6 @@ export function PaymentMethods() {
             <DialogDescription>Select a payment method to add</DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-1 gap-3 py-4">
-            {!paymentMethods.some((m) => m.type === "crypto") && (
-              <Button
-                variant="outline"
-                className="justify-start h-auto p-4 bg-transparent"
-                onClick={() => handleSelectMethodType("crypto")}
-              >
-                <Bitcoin className="mr-3" size={20} />
-                <div className="text-left">
-                  <div className="font-medium">Crypto</div>
-                  <div className="text-xs text-gray-500">USDT, BTC, ETH (TRC20)</div>
-                </div>
-              </Button>
-            )}
             {!paymentMethods.some((m) => m.type === "bank") && (
               <Button
                 variant="outline"
