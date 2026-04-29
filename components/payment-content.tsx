@@ -119,15 +119,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
       id: "pm-1",
-      type: "payoneer",
-      accountHolderName: "Abdul Rehman",
-      email: "abdul.rehman.soashraf@gmail.com",
-      country: "Pakistan",
-      currency: "USD",
-      status: "Active",
+      type: "Cryptol",
+      accountHolderName: "SafePal USDT (BEP20)"
       isDefault: true,
       priority: 1,
-      addedDate: "Feb 11, 2026",
+      addedDate: "Apr 29, 2026",
     },
   ])
 
@@ -156,7 +152,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const thisMonthEarnings = 20559.49
   const lastMonthEarnings = 2910.11
   const nextWithdrawalDate = "14 Apr 2026"
-  
+
   console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance, "Pending:", pendingBalance)
 
   const paymentEntries = []
@@ -332,12 +328,12 @@ Generated on: ${new Date().toLocaleDateString()}
       paymentMethods.map((m) =>
         m.id === selectedMethod.id
           ? {
-              ...m,
-              accountHolderName: formData.accountHolderName,
-              email: formData.email,
-              country: formData.country,
-              currency: formData.currency,
-            }
+            ...m,
+            accountHolderName: formData.accountHolderName,
+            email: formData.email,
+            country: formData.country,
+            currency: formData.currency,
+          }
           : m,
       ),
     )
@@ -747,9 +743,8 @@ Generated on: ${new Date().toLocaleDateString()}
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    addMethodStep >= step ? "bg-green-500 text-white" : "bg-gray-200 text-gray-500"
-                  }`}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${addMethodStep >= step ? "bg-green-500 text-white" : "bg-gray-200 text-gray-500"
+                    }`}
                 >
                   {addMethodStep > step ? <Check className="h-4 w-4" /> : step}
                 </div>
