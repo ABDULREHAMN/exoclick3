@@ -1,4 +1,6 @@
 "use client"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -7,6 +9,58 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 
 export function SettingsContent() {
+  const router = useRouter()
+  const [currentPassword, setCurrentPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [passwordError, setPasswordError] = useState("")
+  const [passwordSuccess, setPasswordSuccess] = useState("")
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false)
+
+  const handlePasswordUpdate = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setPasswordError("")
+    setPasswordSuccess("")
+    setIsUpdatingPassword(true)
+
+    // Validate current password (hardcoded for now - should match login logic)
+    if (currentPassword !== "ABR$786@") {
+      setPasswordError("Current password is incorrect")
+      setIsUpdatingPassword(false)
+      return
+    }
+
+    if (newPassword !== confirmPassword) {
+      setPasswordError("New passwords do not match")
+      setIsUpdatingPassword(false)
+      return
+    }
+
+    if (newPassword.length < 8) {
+      setPasswordError("Password must be at least 8 characters")
+      setIsUpdatingPassword(false)
+      return
+    }
+
+    // Password change successful - invalidate all sessions globally
+    setTimeout(() => {
+      setPasswordSuccess("Password updated successfully. Logging out all sessions...")
+      
+      // Set session invalidation flag for all tabs/windows
+      localStorage.setItem("sessionInvalidated", Date.now().toString())
+      sessionStorage.clear()
+      
+      // Broadcast force logout to all tabs/windows
+      window.dispatchEvent(new Event("forceLogout"))
+      
+      // Clear storage and redirect to login after brief delay
+      setTimeout(() => {
+        localStorage.clear()
+        window.location.href = "/login"
+      }, 1500)
+    }, 500)
+  }
+
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">Settings</h1>
@@ -56,21 +110,51 @@ export function SettingsContent() {
         <TabsContent value="security" className="space-y-6">
           <Card className="p-6">
             <h2 className="text-lg font-medium mb-4">Password</h2>
-            <div className="space-y-4">
+            <form onSubmit={handlePasswordUpdate} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="current-password">Current Password</Label>
-                <Input id="current-password" type="password" />
+                <Input 
+                  id="current-password" 
+                  type="password" 
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  required
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="new-password">New Password</Label>
-                <Input id="new-password" type="password" />
+                <Input 
+                  id="new-password" 
+                  type="password" 
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirm-password">Confirm New Password</Label>
-                <Input id="confirm-password" type="password" />
+                <Input 
+                  id="confirm-password" 
+                  type="password" 
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
               </div>
-              <Button className="bg-green-500 hover:bg-green-600">Update Password</Button>
-            </div>
+              {passwordError && (
+                <div className="text-red-600 text-sm font-medium">{passwordError}</div>
+              )}
+              {passwordSuccess && (
+                <div className="text-green-600 text-sm font-medium">{passwordSuccess}</div>
+              )}
+              <Button 
+                type="submit" 
+                className="bg-green-500 hover:bg-green-600"
+                disabled={isUpdatingPassword}
+              >
+                {isUpdatingPassword ? "Updating..." : "Update Password"}
+              </Button>
+            </form>
           </Card>
 
           <Card className="p-6">

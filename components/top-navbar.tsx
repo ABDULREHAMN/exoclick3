@@ -80,8 +80,12 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
   }
 
   const handleLogout = () => {
-    localStorage.clear()
+    // Invalidate all sessions globally
+    localStorage.setItem("sessionInvalidated", Date.now().toString())
     sessionStorage.clear()
+    localStorage.clear()
+    // Broadcast logout to all tabs/windows
+    window.dispatchEvent(new Event("forceLogout"))
     window.location.href = "/login"
   }
 
