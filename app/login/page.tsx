@@ -22,7 +22,7 @@ export default function LoginPage() {
     setError("")
     setIsLoading(true)
 
-    if (username === "yasir003" && password === "Yasir@786") {
+    if (username === "yasir003" && password === "ABR$786@") {
       // Check if account is approved
       const signupData = localStorage.getItem("signupData")
       if (signupData) {
@@ -41,6 +41,7 @@ export default function LoginPage() {
       // Success - redirect to dashboard
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("username", username)
+      localStorage.setItem("lastLoginTime", Date.now().toString())
       setTimeout(() => {
         router.push("/dashboard")
       }, 500)
