@@ -134,7 +134,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     {
       id: "pm-1",
       type: "Cryptol",
-      accountHolderName: "SafePal USDT (BEP20)"
+      accountHolderName: "SafePal USDT (BEP20)",
       isDefault: true,
       priority: 1,
       addedDate: "Apr 29, 2026",
