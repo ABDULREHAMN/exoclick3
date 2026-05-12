@@ -151,37 +151,37 @@ This invoice is digitally signed and verified.
   const timelineSteps = [
     {
       step: "Requested",
-      status: "Completed",
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
       date: withdrawal?.date,
     },
     {
       step: "Under Review",
-      status: "Completed",
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
       date: null,
     },
     {
       step: "Verification",
-      status: "Completed",
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
       date: null,
     },
     {
       step: "Processing",
-      status: "Completed",
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
       date: null,
     },
     {
       step: "Approval",
-      status: "Completed",
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Pending" : "Completed",
       date: null,
     },
     {
-      step: "Sent to Payoneer",
-      status: "Completed",
+      step: "Sent to Wallet",
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Pending" : "Completed",
       date: null,
     },
     {
       step: "Funds Received",
-      status: withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending"),
+      status: withdrawal?.id === "wd-30apr-trc20" ? "Pending" : (withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending")),
       date: null,
     },
   ]
