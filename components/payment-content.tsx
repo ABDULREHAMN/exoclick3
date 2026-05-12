@@ -65,6 +65,20 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
+      id: "wd-30apr-trc20",
+      date: "30 Apr 2026",
+      method: "USDT TRC20",
+      amount: "$24185.54",
+      status: "Pending",
+      details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
+      grossAmount: "$24185.54",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "3-5 minutes",
+      walletAddress: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
+      network: "TRC20",
+    },
+    {
       id: "wd-14apr",
       date: "14 Apr 2026",
       method: "Payoneer",
@@ -145,8 +159,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
 
 
-  const availableBalance = 25052.31
-  const pendingBalance = 0.00
+  const availableBalance = 896.55
+  const pendingBalance = 24185.54
   const totalEarnings = 28369.05
   const totalPayments = 13800.18
   const thisMonthEarnings = 21426.26

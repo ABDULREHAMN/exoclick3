@@ -79,8 +79,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 25052.31
-  const pendingBalance = 0.00
+  const availableBalance = 896.55
+  const pendingBalance = 24185.54
   const thisMonthEarnings = 21426.26
   const lastMonthEarnings = 2910.11
   const totalPayments = 13800.18
