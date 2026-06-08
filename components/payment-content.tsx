@@ -69,17 +69,17 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       date: "30 Apr 2026",
       method: "USDT TRC20",
       amount: "$24185.54",
-      status: "Under Review",
+      status: "Cancelled",
       details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
       grossAmount: "$24185.54",
       fee: "$0.00",
       feePercentage: 0,
-      processingTime: "3-5 minutes",
+      processingTime: "N/A",
       walletAddress: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
       network: "TRC20",
-      processingState: "On Hold",
-      reviewReason: "Traffic repeatedly stopped during verification checks.",
-      adminNote: "Your withdrawal has been temporarily placed on hold due to repeated traffic interruptions detected during automated verification. Processing has been paused pending manual review.",
+      processingState: "Cancelled",
+      reviewReason: "Withdrawal cancelled during review. Funds returned to available balance.",
+      adminNote: "Withdrawal cancelled during review. Funds returned to available balance.",
     },
     {
       id: "wd-14apr",
@@ -162,8 +162,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
 
 
-  const availableBalance = 1453.92
-  const pendingBalance = 24185.54
+  const availableBalance = 25639.46
+  const pendingBalance = 0.00
   const totalEarnings = 29126.92
   const totalPayments = 13800.18
   const thisMonthEarnings = 170.15
