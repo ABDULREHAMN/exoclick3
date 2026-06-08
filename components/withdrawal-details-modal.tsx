@@ -150,38 +150,38 @@ This invoice is digitally signed and verified.
 
   const timelineSteps = [
     {
-      step: "Requested",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
+      step: "Withdrawal Requested",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Completed" : (withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed"),
       date: withdrawal?.date,
     },
     {
       step: "Under Review",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed"),
       date: null,
     },
     {
       step: "Verification",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed"),
       date: null,
     },
     {
       step: "Processing",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed"),
       date: null,
     },
     {
       step: "Approval",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed"),
       date: null,
     },
     {
-      step: "Sent to Wallet",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed",
+      step: "Funds Sent",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed"),
       date: null,
     },
     {
       step: "Funds Received",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : (withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending")),
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : (withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending"))),
       date: null,
     },
   ]
