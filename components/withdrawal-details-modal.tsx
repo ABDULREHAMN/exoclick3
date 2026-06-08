@@ -68,7 +68,7 @@ Account Status: Verified
 PAYOUT DETAILS:
 Withdrawal Amount: ${withdrawal.amount}
 Currency: USD
-Processing Time: 8–10 business days
+Processing Time: ${withdrawal?.id === "wd-08jun-trc20" ? "20–22 business days" : "8–10 business days"}
 Processing Type: Manual Review
 Withdrawal Schedule: Withdrawals are processed twice per month only. Available withdrawal dates are the 14th and 29th.
 
@@ -84,10 +84,10 @@ Payment Channel: Payoneer Mass Payout
 Internal Note: Secure publisher payout
 
 INVOICE SUMMARY:
-Gross Amount: $${withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00"}
-Withholding Tax (5%): -$${withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50"}
+Gross Amount: $${withdrawal?.id === "wd-08jun-trc20" ? "25639.46" : (withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00")}
+Withholding Tax (5%): -$${withdrawal?.id === "wd-08jun-trc20" ? "1281.97" : (withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50")}
 Fees: $0.00
-Net Amount Paid: $${withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50"}
+Net Amount Paid: $${withdrawal?.id === "wd-08jun-trc20" ? "24357.48" : (withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50")}
 
 TAX & WITHHOLDING INFORMATION:
 Withholding Tax Rate: 5%
@@ -294,10 +294,12 @@ This invoice is digitally signed and verified.
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Currency</div>
                   <div className={`font-semibold ${textPrimary}`}>USD</div>
                 </div>
-                <div>
-                  <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Time</div>
-                  <div className={`font-semibold ${textPrimary}`}>8–10 business days</div>
+              <div>
+                <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Time Estimate</div>
+                <div className={`font-semibold ${textPrimary}`}>
+                  {withdrawal?.id === "wd-08jun-trc20" ? "20–22 business days" : "8–10 business days"}
                 </div>
+              </div>
                 <div className="col-span-2">
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Type</div>
                   <div className={`font-semibold ${textPrimary}`}>Manual Review</div>
@@ -412,13 +414,13 @@ This invoice is digitally signed and verified.
                 <div className="flex justify-between items-center">
                   <span className={`${textSecondary} font-medium`}>Gross Amount</span>
                   <span className={`font-semibold ${textPrimary}`}>
-                    ${withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00"}
+                    ${withdrawal?.id === "wd-08jun-trc20" ? "25639.46" : (withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00")}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className={`${textSecondary} font-medium`}>Withholding Tax (5%)</span>
                   <span className={`font-semibold ${textPrimary}`}>
-                    -${withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50"}
+                    -${withdrawal?.id === "wd-08jun-trc20" ? "1281.97" : (withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50")}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -428,7 +430,7 @@ This invoice is digitally signed and verified.
                 <div className={`flex justify-between items-center pt-3 border-t-2 ${borderColor}`}>
                   <span className={`font-bold ${textPrimary} text-base`}>Net Amount Paid</span>
                   <span className={`font-bold text-blue-600 text-xl`}>
-                    ${withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50"}
+                    ${withdrawal?.id === "wd-08jun-trc20" ? "24357.48" : (withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50")}
                   </span>
                 </div>
               </div>
