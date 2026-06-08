@@ -65,21 +65,38 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
+      id: "wd-08jun-trc20",
+      date: "08 Jun 2026",
+      method: "USDT TRC20",
+      amount: "$25639.46",
+      status: "Pending",
+      details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
+      grossAmount: "$25639.46",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "20–22 Business Days",
+      walletAddress: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
+      network: "TRC20",
+      processingState: "Pending",
+      reviewReason: "Full balance withdrawal requested",
+      adminNote: "Withdrawal of full available balance initiated on 08 Jun 2026. Expected release: 28 Jun - 30 Jun 2026",
+    },
+    {
       id: "wd-30apr-trc20",
       date: "30 Apr 2026",
       method: "USDT TRC20",
       amount: "$24185.54",
-      status: "Under Review",
+      status: "Cancelled",
       details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
       grossAmount: "$24185.54",
       fee: "$0.00",
       feePercentage: 0,
-      processingTime: "3-5 minutes",
+      processingTime: "N/A",
       walletAddress: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
       network: "TRC20",
-      processingState: "On Hold",
-      reviewReason: "Traffic repeatedly stopped during verification checks.",
-      adminNote: "Your withdrawal has been temporarily placed on hold due to repeated traffic interruptions detected during automated verification. Processing has been paused pending manual review.",
+      processingState: "Cancelled",
+      reviewReason: "Withdrawal cancelled during review. Funds returned to available balance.",
+      adminNote: "Withdrawal cancelled during review. Funds returned to available balance.",
     },
     {
       id: "wd-14apr",
@@ -162,13 +179,13 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
 
 
-  const availableBalance = 896.55
-  const pendingBalance = 24185.54
-  const totalEarnings = 28569.55
+  const availableBalance = 0.00
+  const pendingBalance = 25639.46
+  const totalEarnings = 29126.92
   const totalPayments = 13800.18
-  const thisMonthEarnings = 1067.27
-  const lastMonthEarnings = 20559.49
-  const nextWithdrawalDate = "29 May 2026"
+  const thisMonthEarnings = 170.15
+  const lastMonthEarnings = 1454.49
+  const nextWithdrawalDate = "28 Jun 2026 - 30 Jun 2026"
   
   console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance, "Pending:", pendingBalance)
 

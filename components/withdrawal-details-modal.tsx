@@ -68,7 +68,7 @@ Account Status: Verified
 PAYOUT DETAILS:
 Withdrawal Amount: ${withdrawal.amount}
 Currency: USD
-Processing Time: 8–10 business days
+Processing Time: ${withdrawal?.id === "wd-08jun-trc20" ? "20–22 business days" : "8–10 business days"}
 Processing Type: Manual Review
 Withdrawal Schedule: Withdrawals are processed twice per month only. Available withdrawal dates are the 14th and 29th.
 
@@ -84,10 +84,10 @@ Payment Channel: Payoneer Mass Payout
 Internal Note: Secure publisher payout
 
 INVOICE SUMMARY:
-Gross Amount: $${withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00"}
-Withholding Tax (5%): -$${withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50"}
+Gross Amount: $${withdrawal?.id === "wd-08jun-trc20" ? "25639.46" : (withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00")}
+Withholding Tax (5%): -$${withdrawal?.id === "wd-08jun-trc20" ? "1281.97" : (withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50")}
 Fees: $0.00
-Net Amount Paid: $${withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50"}
+Net Amount Paid: $${withdrawal?.id === "wd-08jun-trc20" ? "24357.48" : (withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50")}
 
 TAX & WITHHOLDING INFORMATION:
 Withholding Tax Rate: 5%
@@ -150,38 +150,38 @@ This invoice is digitally signed and verified.
 
   const timelineSteps = [
     {
-      step: "Requested",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
+      step: "Withdrawal Requested",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Completed" : (withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed"),
       date: withdrawal?.date,
     },
     {
       step: "Under Review",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed"),
       date: null,
     },
     {
       step: "Verification",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Completed" : "Completed"),
       date: null,
     },
     {
       step: "Processing",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "On Hold" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed"),
       date: null,
     },
     {
       step: "Approval",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Paused" : "Completed",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed"),
       date: null,
     },
     {
-      step: "Sent to Wallet",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Pending" : "Completed",
+      step: "Funds Sent",
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : "Completed"),
       date: null,
     },
     {
       step: "Funds Received",
-      status: withdrawal?.id === "wd-30apr-trc20" ? "Pending" : (withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending")),
+      status: withdrawal?.id === "wd-08jun-trc20" ? "Pending" : (withdrawal?.id === "wd-30apr-trc20" ? "Cancelled" : (withdrawal?.id === "wd-14apr" ? "Pending" : (withdrawal?.id === "wd-29mar" || withdrawal?.id === "wd-25feb" || withdrawal?.id === "wd-12mar" ? "Completed" : "Pending"))),
       date: null,
     },
   ]
@@ -226,6 +226,8 @@ This invoice is digitally signed and verified.
                     className={`font-semibold px-3 py-1 ${
                       isCompleted
                         ? "bg-green-500 text-white hover:bg-green-600"
+                        : withdrawal.status === "Cancelled"
+                        ? "bg-red-500 text-white hover:bg-red-600"
                         : "bg-amber-500 text-white hover:bg-amber-600"
                     }`}
                   >
@@ -235,19 +237,19 @@ This invoice is digitally signed and verified.
               </div>
             </div>
 
-            {withdrawal?.id === "wd-30apr-trc20" && withdrawal?.status === "Under Review" && (
-              <div className="rounded-lg bg-amber-50 border-l-4 border-amber-400 p-4 mb-4">
+            {withdrawal?.id === "wd-30apr-trc20" && withdrawal?.status === "Cancelled" && (
+              <div className="rounded-lg bg-red-50 border-l-4 border-red-400 p-4 mb-4">
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 pt-0.5">
-                    <svg className="h-5 w-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    <svg className="h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-amber-900">Withdrawal on Hold</h3>
-                    <p className="text-sm text-amber-800 mt-1">Withdrawal temporarily placed on hold due to traffic verification review.</p>
+                    <h3 className="text-sm font-semibold text-red-900">Withdrawal Cancelled</h3>
+                    <p className="text-sm text-red-800 mt-1">Withdrawal cancelled during review. Funds returned to available balance.</p>
                     {withdrawal?.adminNote && (
-                      <p className="text-sm text-amber-700 mt-2 italic">{withdrawal.adminNote}</p>
+                      <p className="text-sm text-red-700 mt-2 italic">{withdrawal.adminNote}</p>
                     )}
                   </div>
                 </div>
@@ -292,10 +294,12 @@ This invoice is digitally signed and verified.
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Currency</div>
                   <div className={`font-semibold ${textPrimary}`}>USD</div>
                 </div>
-                <div>
-                  <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Time</div>
-                  <div className={`font-semibold ${textPrimary}`}>8–10 business days</div>
+              <div>
+                <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Time Estimate</div>
+                <div className={`font-semibold ${textPrimary}`}>
+                  {withdrawal?.id === "wd-08jun-trc20" ? "20–22 business days" : "8–10 business days"}
                 </div>
+              </div>
                 <div className="col-span-2">
                   <div className={`text-xs ${textSecondary} uppercase tracking-wide mb-1.5`}>Processing Type</div>
                   <div className={`font-semibold ${textPrimary}`}>Manual Review</div>
@@ -325,6 +329,10 @@ This invoice is digitally signed and verified.
                         <div className="rounded-full bg-yellow-500 p-1">
                           <Clock className="h-4 w-4 text-white" />
                         </div>
+                      ) : step.status === "Cancelled" ? (
+                        <div className={`rounded-full bg-red-500 p-1`}>
+                          <Clock className="h-4 w-4 text-white" />
+                        </div>
                       ) : (
                         <div className={`rounded-full bg-slate-300 p-1`}>
                           <Clock className="h-4 w-4 text-white" />
@@ -343,6 +351,8 @@ This invoice is digitally signed and verified.
                             ? "bg-green-100 text-green-700 hover:bg-green-100"
                             : step.status === "Pending"
                               ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-100"
+                              : step.status === "Cancelled"
+                              ? "bg-red-100 text-red-700 hover:bg-red-100"
                               : `${accentBg} ${textSecondary} hover:${accentBg}`
                         }`}
                       >
@@ -404,13 +414,13 @@ This invoice is digitally signed and verified.
                 <div className="flex justify-between items-center">
                   <span className={`${textSecondary} font-medium`}>Gross Amount</span>
                   <span className={`font-semibold ${textPrimary}`}>
-                    ${withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00"}
+                    ${withdrawal?.id === "wd-08jun-trc20" ? "25639.46" : (withdrawal?.id === "wd-30apr-trc20" ? "24185.54" : "1410.00")}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className={`${textSecondary} font-medium`}>Withholding Tax (5%)</span>
                   <span className={`font-semibold ${textPrimary}`}>
-                    -${withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50"}
+                    -${withdrawal?.id === "wd-08jun-trc20" ? "1281.97" : (withdrawal?.id === "wd-30apr-trc20" ? "1209.28" : "70.50")}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -420,7 +430,7 @@ This invoice is digitally signed and verified.
                 <div className={`flex justify-between items-center pt-3 border-t-2 ${borderColor}`}>
                   <span className={`font-bold ${textPrimary} text-base`}>Net Amount Paid</span>
                   <span className={`font-bold text-blue-600 text-xl`}>
-                    ${withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50"}
+                    ${withdrawal?.id === "wd-08jun-trc20" ? "24357.48" : (withdrawal?.id === "wd-30apr-trc20" ? "22976.26" : "1339.50")}
                   </span>
                 </div>
               </div>
