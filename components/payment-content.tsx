@@ -65,23 +65,6 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
-      id: "wd-08jun-trc20",
-      date: "08 Jun 2026",
-      method: "USDT TRC20",
-      amount: "$25639.46",
-      status: "Pending",
-      details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
-      grossAmount: "$25639.46",
-      fee: "$0.00",
-      feePercentage: 0,
-      processingTime: "20–22 Business Days",
-      walletAddress: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
-      network: "TRC20",
-      processingState: "Pending",
-      reviewReason: "Full balance withdrawal requested",
-      adminNote: "Withdrawal of full available balance initiated on 08 Jun 2026. Expected release: 28 Jun - 30 Jun 2026",
-    },
-    {
       id: "wd-30apr-trc20",
       date: "30 Apr 2026",
       method: "USDT TRC20",
@@ -179,13 +162,13 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
 
 
-  const availableBalance = 0.00
-  const pendingBalance = 25639.46
+  const availableBalance = 25639.46
+  const pendingBalance = 0.00
   const totalEarnings = 29126.92
   const totalPayments = 13800.18
   const thisMonthEarnings = 170.15
   const lastMonthEarnings = 1454.49
-  const nextWithdrawalDate = "28 Jun 2026 - 30 Jun 2026"
+  const nextWithdrawalDate = "29 Jun 2026"
   
   console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance, "Pending:", pendingBalance)
 

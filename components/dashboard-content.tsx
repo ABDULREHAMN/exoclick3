@@ -79,13 +79,13 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 0.00
-  const pendingBalance = 25639.46
+  const availableBalance = 25639.46
+  const pendingBalance = 0.00
   const thisMonthEarnings = 170.15
   const lastMonthEarnings = 1454.49
   const totalPayments = 13800.18
   const totalEarnings = 29126.92
-  const nextWithdrawalDate = "28 Jun 2026 - 30 Jun 2026"
+  const nextWithdrawalDate = "29 Jun 2026"
 
   const allReportData = [
     { date: "Dec 18, 2025", impressions: 7421, clicks: 134, revenue: 18.20, ctr: "1.80%", ecpm: "18.20" },
