@@ -1,6 +1,6 @@
 "use client"
 // Report data with manual ECPM values - no auto-calculation
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Download, Filter, RefreshCw, BarChart2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -383,13 +383,44 @@ export function ReportContent() {
     // Data already current, no action needed
   }
 
+  useEffect(() => {
+    handleApplyFilters()
+  }, [selectedDateRange, selectedDevice])
+
+  const filterDataByDateRange = (data: Array<any>, range: string) => {
+    const today = new Date(2026, 5, 14) // June 14, 2026 as reference date
+    let cutoffDate = new Date(today)
+
+    if (range === "Last 7 Days") {
+      cutoffDate.setDate(cutoffDate.getDate() - 7)
+    } else if (range === "Last 30 Days") {
+      cutoffDate.setDate(cutoffDate.getDate() - 30)
+    } else if (range === "Last 3 Months") {
+      cutoffDate.setMonth(cutoffDate.getMonth() - 3)
+    } else if (range === "Last 6 Months") {
+      cutoffDate.setMonth(cutoffDate.getMonth() - 6)
+    } else {
+      return data
+    }
+
+    return data.filter(row => {
+      const rowDate = new Date(row.date)
+      return rowDate >= cutoffDate && rowDate <= today
+    })
+  }
+
   const handleApplyFilters = () => {
-    const dateData = reportData[selectedDateRange as keyof typeof reportData]
-    const countryData = dateData?.[selectedCountry as keyof typeof dateData]
+    let dateData = reportData[selectedDateRange as keyof typeof reportData]
+    if (!dateData) {
+      dateData = reportData["Last 7 Days"]
+    }
+
+    const countryData = dateData["All Countries"]
     const deviceData = countryData?.[selectedDevice as keyof typeof countryData]
 
     if (deviceData) {
-      setCurrentReportData(deviceData)
+      const filteredData = filterDataByDateRange(deviceData, selectedDateRange)
+      setCurrentReportData(filteredData)
       setIsFiltered(true)
     } else {
       setCurrentReportData(reportData["Last 7 Days"]["All Countries"]["All Devices"])
