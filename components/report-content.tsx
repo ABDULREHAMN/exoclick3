@@ -357,26 +357,40 @@ const reportData = {
   },
 }
 
-// Automatic date synchronization - ensure today's record exists
+// Automatic date synchronization - ensure today's record exists and prevent duplicates
 function ensureAutoDatesInReport(data: typeof reportData): typeof reportData {
   const todayString = getTodayDateString()
   const last7DaysData = data["Last 7 Days"]["All Countries"]["All Devices"]
   
-  // Check if today already exists
-  const todayExists = last7DaysData.some(record => record.date === todayString)
+  // Remove any duplicate today entries that might exist
+  const filteredData = last7DaysData.filter(record => record.date !== todayString)
   
-  if (!todayExists) {
-    // Create today's entry with zero values in report format
-    const todayEntry = {
-      date: todayString,
-      impressions: "0",
-      clicks: "0",
-      ctr: "0.00%",
-      ecpm: "$0.00",
-      revenue: "$0.00"
-    }
-    // Add today at the beginning
-    data["Last 7 Days"]["All Countries"]["All Devices"] = [todayEntry, ...last7DaysData]
+  // Create today's entry with zero values in report format
+  const todayEntry = {
+    date: todayString,
+    impressions: "0",
+    clicks: "0",
+    ctr: "0.00%",
+    ecpm: "$0.00",
+    revenue: "$0.00"
+  }
+  
+  // Add today at the beginning (newest first)
+  data["Last 7 Days"]["All Countries"]["All Devices"] = [todayEntry, ...filteredData]
+  
+  // Also update other device categories to ensure consistency
+  if (data["Last 7 Days"]["All Countries"]["Desktop"]) {
+    data["Last 7 Days"]["All Countries"]["Desktop"] = [
+      todayEntry,
+      ...data["Last 7 Days"]["All Countries"]["Desktop"].filter((r: any) => r.date !== todayString)
+    ]
+  }
+  
+  if (data["Last 7 Days"]["All Countries"]["Mobile"]) {
+    data["Last 7 Days"]["All Countries"]["Mobile"] = [
+      todayEntry,
+      ...data["Last 7 Days"]["All Countries"]["Mobile"].filter((r: any) => r.date !== todayString)
+    ]
   }
   
   return data
