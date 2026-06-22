@@ -1,7 +1,8 @@
 "use client"
 
 import React from "react"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { synchronizeData, getTodayDateString } from "@/lib/auto-date-system"
 import {
   Eye,
   MousePointer,
@@ -182,32 +183,16 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Jun 14, 2026", impressions: 446, clicks: 14, revenue: 0.91, ctr: "3.14%", ecpm: "63.76" },
   ]
 
-  const recentActivityData = [
-    { date: "Jun 14, 2026", impressions: 446, clicks: 14, revenue: 0.91, ctr: "3.14%", ecpm: "63.76" },
-    { date: "Jun 13, 2026", impressions: 339, clicks: 13, revenue: 0.44, ctr: "3.83%", ecpm: "60.22" },
-    { date: "Jun 12, 2026", impressions: 6810, clicks: 248, revenue: 23.91, ctr: "3.64%", ecpm: "67.11" },
-    { date: "Jun 11, 2026", impressions: 6795, clicks: 232, revenue: 22.88, ctr: "3.41%", ecpm: "61.44" },
-    { date: "Jun 10, 2026", impressions: 6782, clicks: 221, revenue: 22.12, ctr: "3.26%", ecpm: "56.18" },
-  ]
-  
-  console.log("[v0] Recent Activity Data:", recentActivityData)
-  console.log("[v0] Print Log - 09 Apr 2026 - No print action")
-  console.log("[v0] Print Log - 10 Apr 2026 - Ready for Print")
+  // Synchronize data using automatic date system
+  const syncedData = useMemo(() => synchronizeData(allReportData), [])
+  const recentActivityData = syncedData.recentActivityData
+  const latestActivity = syncedData.todayRecord
 
-  const latestActivity = {
-    date: "Jun 14, 2026",
-    revenue: 0.91,
-    impressions: 446,
-    clicks: 14,
-    ctr: "3.14%",
-    ecpm: "63.76",
-  }
-
-  const todayRevenue = 0.91
-  const todayImpressions = 446
-  const todayClicks = 14
-  const todayCTR = "3.14"
-  const todayECPM = "63.76"
+  const todayRevenue = latestActivity.revenue
+  const todayImpressions = latestActivity.impressions
+  const todayClicks = latestActivity.clicks
+  const todayCTR = latestActivity.ctr.replace("%", "")
+  const todayECPM = latestActivity.ecpm
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -224,9 +209,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 446,
-    clicks: 14,
-    revenue: 0.91,
+    impressions: latestActivity.impressions,
+    clicks: latestActivity.clicks,
+    revenue: latestActivity.revenue,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
