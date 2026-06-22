@@ -1,10 +1,11 @@
 "use client"
 // Report data with manual ECPM values - no auto-calculation
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Download, Filter, RefreshCw, BarChart2 } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { getTodayDateString, ensureTodayRecord } from "@/lib/auto-date-system"
 
 const reportData = {
   "Last 7 Days": {
@@ -356,6 +357,33 @@ const reportData = {
   },
 }
 
+// Automatic date synchronization - ensure today's record exists
+function ensureAutoDatesInReport(data: typeof reportData): typeof reportData {
+  const todayString = getTodayDateString()
+  const last7DaysData = data["Last 7 Days"]["All Countries"]["All Devices"]
+  
+  // Check if today already exists
+  const todayExists = last7DaysData.some(record => record.date === todayString)
+  
+  if (!todayExists) {
+    // Create today's entry with zero values in report format
+    const todayEntry = {
+      date: todayString,
+      impressions: "0",
+      clicks: "0",
+      ctr: "0.00%",
+      ecpm: "$0.00",
+      revenue: "$0.00"
+    }
+    // Add today at the beginning
+    data["Last 7 Days"]["All Countries"]["All Devices"] = [todayEntry, ...last7DaysData]
+  }
+  
+  return data
+}
+
+const syncedReportData = ensureAutoDatesInReport(reportData)
+
 const statisticsTotals = {
   impressions: 2068898,
   clicks: 77436,
@@ -372,7 +400,7 @@ export function ReportContent() {
   const [selectedSite, setSelectedSite] = useState("All Sites")
   const [selectedCountry, setSelectedCountry] = useState("All Countries")
   const [selectedDevice, setSelectedDevice] = useState("All Devices")
-  const [currentReportData, setCurrentReportData] = useState(reportData["Last 7 Days"]["All Countries"]["All Devices"])
+  const [currentReportData, setCurrentReportData] = useState(syncedReportData["Last 7 Days"]["All Countries"]["All Devices"])
   const [isFiltered, setIsFiltered] = useState(false)
 
   const handleGenerateReport = () => {
@@ -410,9 +438,9 @@ export function ReportContent() {
   }
 
   const handleApplyFilters = () => {
-    let dateData = reportData[selectedDateRange as keyof typeof reportData]
+    let dateData = syncedReportData[selectedDateRange as keyof typeof syncedReportData]
     if (!dateData) {
-      dateData = reportData["Last 7 Days"]
+      dateData = syncedReportData["Last 7 Days"]
     }
 
     const countryData = dateData["All Countries"]
@@ -423,7 +451,7 @@ export function ReportContent() {
       setCurrentReportData(filteredData)
       setIsFiltered(true)
     } else {
-      setCurrentReportData(reportData["Last 7 Days"]["All Countries"]["All Devices"])
+      setCurrentReportData(syncedReportData["Last 7 Days"]["All Countries"]["All Devices"])
       setIsFiltered(false)
     }
   }
@@ -436,7 +464,7 @@ export function ReportContent() {
     setSelectedCountry("All Countries")
     setSelectedDevice("All Devices")
 
-    setCurrentReportData(reportData["Last 7 Days"]["All Countries"]["All Devices"])
+    setCurrentReportData(syncedReportData["Last 7 Days"]["All Countries"]["All Devices"])
     setIsFiltered(false)
   }
 
