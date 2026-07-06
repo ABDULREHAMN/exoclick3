@@ -1045,7 +1045,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Forecast</span>
-                    <span className="text-sm font-medium text-blue-600">${(thisMonthForecast).toFixed(0)}</span>
+                    <span className="text-sm font-medium text-blue-600">${Math.round(thisMonthForecast)}</span>
                   </div>
                 </div>
               </Card>
@@ -1292,7 +1292,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
         <StatsCard title="LAST MONTH" value={`$${lastMonthEarnings.toFixed(2)}`} />
         <StatsCard
           title="THIS MONTH FORECAST"
-          value={`$${thisMonthForecast.toFixed(0)}+`}
+          value={`$${Math.round(thisMonthForecast)}+`}
           badge={{
             text: `${forecastGrowth}%`,
             color: "bg-green-500",
