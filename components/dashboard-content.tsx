@@ -82,8 +82,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
 
   const availableBalance = 103.70
   const pendingBalance = 0.00
-  const thisMonthEarnings = 273.85
-  const lastMonthEarnings = 1454.49
+  const thisMonthEarnings = 0.00
+  const lastMonthEarnings = 273.85
+  const thisMonthForecast = 508.00
+  const forecastGrowth = 78
   const totalPayments = 13800.18
   const totalEarnings = 29230.62
   const nextWithdrawalDate = "29 Jun 2026"
@@ -1042,8 +1044,8 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                     <span className="text-lg font-semibold text-gray-700">${(lastMonthEarnings).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Growth Rate</span>
-                    <span className="text-sm font-medium text-green-600">100%</span>
+                    <span className="text-sm text-gray-600">Forecast</span>
+                    <span className="text-sm font-medium text-blue-600">${Math.round(thisMonthForecast)}</span>
                   </div>
                 </div>
               </Card>
@@ -1286,13 +1288,13 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
     <div className="p-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <StatsCard title="TODAY" value={`$${todayTotals.revenue.toFixed(2)}`} />
-        <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(3)}`} />
+        <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(2)}`} />
         <StatsCard title="LAST MONTH" value={`$${lastMonthEarnings.toFixed(2)}`} />
         <StatsCard
           title="THIS MONTH FORECAST"
-          value="$508+"
+          value={`$${Math.round(thisMonthForecast)}+`}
           badge={{
-            text: "78%",
+            text: `${forecastGrowth}%`,
             color: "bg-green-500",
           }}
         />
@@ -1759,10 +1761,10 @@ function StatsCard({ title, value, badge }: StatsCardProps) {
         <TooltipTrigger asChild>
           <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
             <div className="text-xs text-gray-500 mb-2">{title}</div>
-            <div className="text-2xl font-semibold flex items-center">
-              {value}
+            <div className="text-2xl font-semibold flex items-center gap-2 flex-wrap">
+              <span className="whitespace-nowrap">{value}</span>
               {badge && (
-                <span className={`ml-2 text-xs text-white px-2 py-0.5 rounded ${badge.color}`}>{badge.text}</span>
+                <span className={`text-xs text-white px-2 py-0.5 rounded ${badge.color}`}>{badge.text}</span>
               )}
             </div>
           </Card>
