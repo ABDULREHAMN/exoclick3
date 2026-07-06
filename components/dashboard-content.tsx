@@ -645,15 +645,27 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     const data = filteredReportData
 
     if (chartView === "daily") {
-      return data.map((item) => ({
-        date: new Date(item.date).toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-        }),
-        revenue: item.revenue,
-        impressions: item.impressions,
-        clicks: item.clicks,
-      }))
+      return data.map((item) => {
+        // Parse the date string (format: "Jun 14, 2026")
+        const dateParts = item.date.split(" ")
+        const month = dateParts[0]
+        const day = dateParts[1].replace(",", "")
+        const year = dateParts[2]
+        
+        // Format as "14 Jun" for display
+        return {
+          date: `${day} ${month}`,
+          revenue: typeof item.revenue === "string" 
+            ? parseFloat(item.revenue.replace("$", "").replace(",", ""))
+            : item.revenue,
+          impressions: typeof item.impressions === "string"
+            ? parseInt(item.impressions.replace(",", ""))
+            : item.impressions,
+          clicks: typeof item.clicks === "string"
+            ? parseInt(item.clicks.replace(",", ""))
+            : item.clicks,
+        }
+      })
     } else if (chartView === "weekly") {
       // Weekly aggregation starting Monday
       const weeklyData: Record<string, { revenue: number; impressions: number; clicks: number; startDate: Date }> = {}
