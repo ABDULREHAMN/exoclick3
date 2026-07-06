@@ -84,8 +84,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const pendingBalance = 0.00
   const thisMonthEarnings = 0.00
   const lastMonthEarnings = 273.85
-  const thisMonthForecast = 508.00
-  const forecastGrowth = 78
+  const thisMonthForecast = 0.00
+  const forecastGrowth = 0
   const totalPayments = 13800.18
   const totalEarnings = 29230.62
   const nextWithdrawalDate = "29 Jun 2026"
@@ -645,15 +645,27 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     const data = filteredReportData
 
     if (chartView === "daily") {
-      return data.map((item) => ({
-        date: new Date(item.date).toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-        }),
-        revenue: item.revenue,
-        impressions: item.impressions,
-        clicks: item.clicks,
-      }))
+      return data.map((item) => {
+        // Parse the date string (format: "Jun 14, 2026")
+        const dateParts = item.date.split(" ")
+        const month = dateParts[0]
+        const day = dateParts[1].replace(",", "")
+        const year = dateParts[2]
+        
+        // Format as "14 Jun" for display
+        return {
+          date: `${day} ${month}`,
+          revenue: typeof item.revenue === "string" 
+            ? parseFloat(item.revenue.replace("$", "").replace(",", ""))
+            : item.revenue,
+          impressions: typeof item.impressions === "string"
+            ? parseInt(item.impressions.replace(",", ""))
+            : item.impressions,
+          clicks: typeof item.clicks === "string"
+            ? parseInt(item.clicks.replace(",", ""))
+            : item.clicks,
+        }
+      })
     } else if (chartView === "weekly") {
       // Weekly aggregation starting Monday
       const weeklyData: Record<string, { revenue: number; impressions: number; clicks: number; startDate: Date }> = {}
@@ -1045,7 +1057,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Forecast</span>
-                    <span className="text-sm font-medium text-blue-600">${Math.round(thisMonthForecast)}</span>
+                    <span className="text-sm font-medium text-gray-600">${thisMonthForecast.toFixed(2)}</span>
                   </div>
                 </div>
               </Card>
@@ -1292,10 +1304,10 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
         <StatsCard title="LAST MONTH" value={`$${lastMonthEarnings.toFixed(2)}`} />
         <StatsCard
           title="THIS MONTH FORECAST"
-          value={`$${Math.round(thisMonthForecast)}+`}
+          value={`$${thisMonthForecast.toFixed(2)}`}
           badge={{
-            text: `${forecastGrowth}%`,
-            color: "bg-green-500",
+            text: "Neutral",
+            color: "bg-gray-500",
           }}
         />
         <StatsCard title="LAST 6 MONTHS" value={`$${totalEarnings.toFixed(3)}`} />
