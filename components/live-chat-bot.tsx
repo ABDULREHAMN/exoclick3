@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MessageCircle, X, Send, AlertCircle } from "lucide-react"
+import { MessageCircle, X, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,54 +14,9 @@ interface ChatMessage {
 
 const supportConversation: ChatMessage[] = [
   {
-    text: "Hello Publisher, we noticed unusual traffic pauses and repeated interruptions during verification checks. Can you explain the source of your traffic and testing activity?",
+    text: "Thank you for contacting us. Our support team has received your request. A member of our team will get back to you shortly. Please keep this chat open for further updates.",
     sender: "support",
-    time: "11:04 AM",
-  },
-  {
-    text: "I tested multiple traffic methods and production campaigns. Some campaigns were paused and restarted during trial optimization. I also tested different production strategies and payout methods.",
-    sender: "user",
-    time: "11:06 AM",
-  },
-  {
-    text: "Did you use trial traffic sources or temporary testing campaigns during the payout period?",
-    sender: "support",
-    time: "11:08 AM",
-  },
-  {
-    text: "Yes, several trial campaigns were used for optimization. Real traffic methods were also tested and production campaigns were scaled after successful trials.",
-    sender: "user",
-    time: "11:09 AM",
-  },
-  {
-    text: "Our system detected repeated stop/start behavior in traffic flow. Because of this, your withdrawal entered manual review status.",
-    sender: "support",
-    time: "11:11 AM",
-  },
-  {
-    text: "The campaigns were paused only for optimization and testing. No invalid automation or fake traffic was intentionally used.",
-    sender: "user",
-    time: "11:13 AM",
-  },
-  {
-    text: "Thank you for clarification. Your withdrawal of $24185.54 was temporarily placed on hold for verification review.",
-    sender: "support",
-    time: "11:15 AM",
-  },
-  {
-    text: "Can you explain why the withdrawal was held and how long review takes?",
-    sender: "user",
-    time: "11:17 AM",
-  },
-  {
-    text: "The payout was automatically flagged because traffic consistency repeatedly changed during the review period. The withdrawal remains safe and under manual verification.",
-    sender: "support",
-    time: "11:18 AM",
-  },
-  {
-    text: "Estimated review time is 8–10 business days. Once verification is completed, the payout status will update automatically.",
-    sender: "support",
-    time: "11:20 AM",
+    time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   },
 ]
 
@@ -112,14 +67,7 @@ export default function LiveChatBot() {
             <p className="text-xs text-blue-100">Nilan Cookery India Support</p>
           </div>
 
-          {/* Withdrawal Hold Notice */}
-          <div className="px-4 py-3 bg-amber-50 border-b border-amber-200 flex gap-2">
-            <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
-            <div className="text-sm">
-              <p className="font-semibold text-amber-900">Withdrawal Under Review</p>
-              <p className="text-amber-800 text-xs mt-1">Amount: $24,185.54 | Status: On Hold</p>
-            </div>
-          </div>
+
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-white">
