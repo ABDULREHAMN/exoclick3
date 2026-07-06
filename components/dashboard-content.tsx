@@ -84,8 +84,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const pendingBalance = 0.00
   const thisMonthEarnings = 0.00
   const lastMonthEarnings = 273.85
-  const thisMonthForecast = 508.00
-  const forecastGrowth = 78
+  const thisMonthForecast = 0.00
+  const forecastGrowth = 0
   const totalPayments = 13800.18
   const totalEarnings = 29230.62
   const nextWithdrawalDate = "29 Jun 2026"
@@ -1045,7 +1045,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Forecast</span>
-                    <span className="text-sm font-medium text-blue-600">${Math.round(thisMonthForecast)}</span>
+                    <span className="text-sm font-medium text-gray-600">${thisMonthForecast.toFixed(2)}</span>
                   </div>
                 </div>
               </Card>
@@ -1292,10 +1292,10 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
         <StatsCard title="LAST MONTH" value={`$${lastMonthEarnings.toFixed(2)}`} />
         <StatsCard
           title="THIS MONTH FORECAST"
-          value={`$${Math.round(thisMonthForecast)}+`}
+          value={`$${thisMonthForecast.toFixed(2)}`}
           badge={{
-            text: `${forecastGrowth}%`,
-            color: "bg-green-500",
+            text: "Neutral",
+            color: "bg-gray-500",
           }}
         />
         <StatsCard title="LAST 6 MONTHS" value={`$${totalEarnings.toFixed(3)}`} />
