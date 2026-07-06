@@ -357,16 +357,58 @@ const reportData = {
   },
 }
 
-// Automatic date synchronization - ensure today's record exists and prevent duplicates
+// Generate complete daily records from Feb 11, 2026 to Jul 6, 2026
+function generateCompleteDailyRecords(baseData: Array<any>): Array<any> {
+  const startDate = new Date(2026, 1, 11) // Feb 11, 2026
+  const endDate = new Date(2026, 6, 6) // Jul 6, 2026
+  
+  // Create a map of existing dates for quick lookup
+  const existingDateMap = new Map<string, any>()
+  baseData.forEach(record => {
+    existingDateMap.set(record.date, record)
+  })
+  
+  const completeRecords: Array<any> = []
+  const currentDate = new Date(startDate)
+  
+  // Generate record for each day from Feb 11 to Jul 6
+  while (currentDate <= endDate) {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
+    const dateStr = `${monthNames[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`
+    
+    if (existingDateMap.has(dateStr)) {
+      // Use existing record
+      completeRecords.push(existingDateMap.get(dateStr)!)
+    } else {
+      // Create new record with zero/default values
+      completeRecords.push({
+        date: dateStr,
+        impressions: "0",
+        clicks: "0",
+        ctr: "0.00%",
+        ecpm: "$0.00",
+        revenue: "$0.00"
+      })
+    }
+    
+    currentDate.setDate(currentDate.getDate() + 1)
+  }
+  
+  return completeRecords.reverse() // Return newest first (Jul 6 to Feb 11)
+}
+
+// Automatic date synchronization - generate complete daily records and ensure today's record exists
 function ensureAutoDatesInReport(data: typeof reportData): typeof reportData {
   const todayString = getTodayDateString()
-  const last7DaysData = data["Last 7 Days"]["All Countries"]["All Devices"]
+  const baseData = data["Last 7 Days"]["All Countries"]["All Devices"]
   
-  // Remove any duplicate today entries that might exist
-  const filteredData = last7DaysData.filter(record => record.date !== todayString)
+  // Generate complete daily records from Feb 11, 2026 to today
+  const completeRecords = generateCompleteDailyRecords(baseData)
   
-  // Create today's entry with zero values in report format
-  const todayEntry = {
+  // Ensure today's record exists and is at the top
+  const filteredData = completeRecords.filter(record => record.date !== todayString)
+  
+  const todayEntry = completeRecords.find(r => r.date === todayString) || {
     date: todayString,
     impressions: "0",
     clicks: "0",
@@ -375,22 +417,16 @@ function ensureAutoDatesInReport(data: typeof reportData): typeof reportData {
     revenue: "$0.00"
   }
   
-  // Add today at the beginning (newest first)
+  // Add complete daily records to all categories
   data["Last 7 Days"]["All Countries"]["All Devices"] = [todayEntry, ...filteredData]
   
-  // Also update other device categories to ensure consistency
+  // Also update other device categories with complete data
   if (data["Last 7 Days"]["All Countries"]["Desktop"]) {
-    data["Last 7 Days"]["All Countries"]["Desktop"] = [
-      todayEntry,
-      ...data["Last 7 Days"]["All Countries"]["Desktop"].filter((r: any) => r.date !== todayString)
-    ]
+    data["Last 7 Days"]["All Countries"]["Desktop"] = [todayEntry, ...filteredData]
   }
   
   if (data["Last 7 Days"]["All Countries"]["Mobile"]) {
-    data["Last 7 Days"]["All Countries"]["Mobile"] = [
-      todayEntry,
-      ...data["Last 7 Days"]["All Countries"]["Mobile"].filter((r: any) => r.date !== todayString)
-    ]
+    data["Last 7 Days"]["All Countries"]["Mobile"] = [todayEntry, ...filteredData]
   }
   
   return data
@@ -425,18 +461,45 @@ export function ReportContent() {
     // Data already current, no action needed
   }
 
+  // Parse date string in format "Mon DD, YYYY" to Date object
+  const parseDate = (dateString: string): Date => {
+    const months: { [key: string]: number } = {
+      Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+      Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+    }
+    const parts = dateString.split(/[\s,]+/)
+    const month = months[parts[0]]
+    const day = parseInt(parts[1])
+    const year = parseInt(parts[2])
+    return new Date(year, month, day)
+  }
+
   useEffect(() => {
     handleApplyFilters()
   }, [selectedDateRange, selectedDevice])
 
   const filterDataByDateRange = (data: Array<any>, range: string) => {
-    const today = new Date(2026, 5, 14) // June 14, 2026 as reference date
+    if (!data || data.length === 0) return data
+
+    // Find the latest date with actual data (skip auto-generated zeros)
+    let today = parseDate(data[0].date)
+    
+    // If first record has zero values, find the first non-zero record for reference
+    if (data[0].impressions === "0" && data.length > 1) {
+      for (let i = 1; i < data.length; i++) {
+        if (data[i].impressions !== "0") {
+          today = parseDate(data[i].date)
+          break
+        }
+      }
+    }
+
     let cutoffDate = new Date(today)
 
     if (range === "Last 7 Days") {
-      cutoffDate.setDate(cutoffDate.getDate() - 7)
+      cutoffDate.setDate(cutoffDate.getDate() - 6) // -6 because we include today, so 7 days total
     } else if (range === "Last 30 Days") {
-      cutoffDate.setDate(cutoffDate.getDate() - 30)
+      cutoffDate.setDate(cutoffDate.getDate() - 29) // -29 because we include today, so 30 days total
     } else if (range === "Last 3 Months") {
       cutoffDate.setMonth(cutoffDate.getMonth() - 3)
     } else if (range === "Last 6 Months") {
@@ -445,9 +508,17 @@ export function ReportContent() {
       return data
     }
 
-    return data.filter(row => {
-      const rowDate = new Date(row.date)
+    // Filter and sort by date (newest first)
+    const filtered = data.filter(row => {
+      const rowDate = parseDate(row.date)
       return rowDate >= cutoffDate && rowDate <= today
+    })
+
+    // Sort by date descending (newest first)
+    return filtered.sort((a, b) => {
+      const dateA = parseDate(a.date).getTime()
+      const dateB = parseDate(b.date).getTime()
+      return dateB - dateA
     })
   }
 
