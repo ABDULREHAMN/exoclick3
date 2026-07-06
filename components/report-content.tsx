@@ -425,18 +425,45 @@ export function ReportContent() {
     // Data already current, no action needed
   }
 
+  // Parse date string in format "Mon DD, YYYY" to Date object
+  const parseDate = (dateString: string): Date => {
+    const months: { [key: string]: number } = {
+      Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+      Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+    }
+    const parts = dateString.split(/[\s,]+/)
+    const month = months[parts[0]]
+    const day = parseInt(parts[1])
+    const year = parseInt(parts[2])
+    return new Date(year, month, day)
+  }
+
   useEffect(() => {
     handleApplyFilters()
   }, [selectedDateRange, selectedDevice])
 
   const filterDataByDateRange = (data: Array<any>, range: string) => {
-    const today = new Date(2026, 5, 14) // June 14, 2026 as reference date
+    if (!data || data.length === 0) return data
+
+    // Find the latest date with actual data (skip auto-generated zeros)
+    let today = parseDate(data[0].date)
+    
+    // If first record has zero values, find the first non-zero record for reference
+    if (data[0].impressions === "0" && data.length > 1) {
+      for (let i = 1; i < data.length; i++) {
+        if (data[i].impressions !== "0") {
+          today = parseDate(data[i].date)
+          break
+        }
+      }
+    }
+
     let cutoffDate = new Date(today)
 
     if (range === "Last 7 Days") {
-      cutoffDate.setDate(cutoffDate.getDate() - 7)
+      cutoffDate.setDate(cutoffDate.getDate() - 6) // -6 because we include today, so 7 days total
     } else if (range === "Last 30 Days") {
-      cutoffDate.setDate(cutoffDate.getDate() - 30)
+      cutoffDate.setDate(cutoffDate.getDate() - 29) // -29 because we include today, so 30 days total
     } else if (range === "Last 3 Months") {
       cutoffDate.setMonth(cutoffDate.getMonth() - 3)
     } else if (range === "Last 6 Months") {
@@ -445,9 +472,17 @@ export function ReportContent() {
       return data
     }
 
-    return data.filter(row => {
-      const rowDate = new Date(row.date)
+    // Filter and sort by date (newest first)
+    const filtered = data.filter(row => {
+      const rowDate = parseDate(row.date)
       return rowDate >= cutoffDate && rowDate <= today
+    })
+
+    // Sort by date descending (newest first)
+    return filtered.sort((a, b) => {
+      const dateA = parseDate(a.date).getTime()
+      const dateB = parseDate(b.date).getTime()
+      return dateB - dateA
     })
   }
 
