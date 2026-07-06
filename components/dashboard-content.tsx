@@ -1761,10 +1761,10 @@ function StatsCard({ title, value, badge }: StatsCardProps) {
         <TooltipTrigger asChild>
           <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
             <div className="text-xs text-gray-500 mb-2">{title}</div>
-            <div className="text-2xl font-semibold flex items-center">
-              {value}
+            <div className="text-2xl font-semibold flex items-center gap-2 flex-wrap">
+              <span className="whitespace-nowrap">{value}</span>
               {badge && (
-                <span className={`ml-2 text-xs text-white px-2 py-0.5 rounded ${badge.color}`}>{badge.text}</span>
+                <span className={`text-xs text-white px-2 py-0.5 rounded ${badge.color}`}>{badge.text}</span>
               )}
             </div>
           </Card>
