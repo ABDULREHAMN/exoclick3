@@ -665,51 +665,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     return sortedData.slice(0, dashboardDateRange)
   }
 
-  // Generate complete daily records from Jun 13 to Jul 8 for the chart
-  const getCompleteDailyChartData = (data: typeof filteredReportData) => {
-    const startDate = new Date(2026, 5, 13) // Jun 13, 2026
-    const endDate = new Date(2026, 6, 8) // Jul 8, 2026
-    
-    // Create a map of existing dates for quick lookup
-    const dataMap = new Map<string, any>()
-    data.forEach(item => {
-      dataMap.set(item.date, item)
-    })
-    
-    const completeData: any[] = []
-    const currentDate = new Date(startDate)
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]
-    
-    // Generate record for each day from Jun 13 to Jul 8
-    while (currentDate <= endDate) {
-      const dateStr = `${monthNames[currentDate.getMonth()]} ${currentDate.getDate()}, ${currentDate.getFullYear()}`
-      
-      if (dataMap.has(dateStr)) {
-        completeData.push(dataMap.get(dateStr))
-      } else {
-        // Create zero-value record for missing date
-        completeData.push({
-          date: dateStr,
-          impressions: "0",
-          clicks: "0",
-          revenue: "$0.00",
-          ctr: "0.00%",
-          ecpm: "$0.00"
-        })
-      }
-      
-      currentDate.setDate(currentDate.getDate() + 1)
-    }
-    
-    return completeData
-  }
-
   const chartData = useMemo(() => {
-    // Use complete daily data for the chart (includes zero-value records for missing dates)
-    const completeData = getCompleteDailyChartData(filteredReportData)
+    const data = filteredReportData
 
     if (chartView === "daily") {
-      return completeData.map((item) => {
+      return data.map((item) => {
         // Parse the date string (format: "Jun 14, 2026")
         const dateParts = item.date.split(" ")
         const month = dateParts[0]
@@ -733,16 +693,8 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     } else if (chartView === "weekly") {
       // Weekly aggregation starting Monday
       const weeklyData: Record<string, { revenue: number; impressions: number; clicks: number; startDate: Date }> = {}
-      completeData.forEach((d) => {
-        // Parse date string to create Date object
-        const dateStr = d.date
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        const parts = dateStr.split(" ")
-        const monthIndex = monthNames.indexOf(parts[0])
-        const day = parseInt(parts[1].replace(",", ""))
-        const year = parseInt(parts[2])
-        const date = new Date(year, monthIndex, day)
-        
+      data.forEach((d) => {
+        const date = new Date(d.date)
         const dayOfWeek = date.getDay()
         const monday = new Date(date)
         const diff = dayOfWeek === 0 ? 6 : dayOfWeek - 1
@@ -753,19 +705,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
         if (!weeklyData[weekKey]) {
           weeklyData[weekKey] = { revenue: 0, impressions: 0, clicks: 0, startDate: monday }
         }
-        const revenue = typeof d.revenue === "string" 
-          ? parseFloat(d.revenue.replace("$", "").replace(",", ""))
-          : d.revenue
-        const impressions = typeof d.impressions === "string"
-          ? parseInt(d.impressions.replace(",", ""))
-          : d.impressions
-        const clicks = typeof d.clicks === "string"
-          ? parseInt(d.clicks.replace(",", ""))
-          : d.clicks
-          
-        weeklyData[weekKey].revenue += revenue
-        weeklyData[weekKey].impressions += impressions
-        weeklyData[weekKey].clicks += clicks
+        weeklyData[weekKey].revenue += d.revenue
+        weeklyData[weekKey].impressions += d.impressions
+        weeklyData[weekKey].clicks += d.clicks
       })
       return Object.entries(weeklyData)
         .sort((a, b) => a[1].startDate.getTime() - b[1].startDate.getTime())
@@ -778,24 +720,14 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     } else {
       // Monthly aggregation
       const monthlyData: Record<string, { revenue: number; impressions: number; clicks: number }> = {}
-      completeData.forEach((d) => {
+      data.forEach((d) => {
         const month = d.date.split(" ")[0] + " " + d.date.split(" ")[2].split(",")[0]
         if (!monthlyData[month]) {
           monthlyData[month] = { revenue: 0, impressions: 0, clicks: 0 }
         }
-        const revenue = typeof d.revenue === "string" 
-          ? parseFloat(d.revenue.replace("$", "").replace(",", ""))
-          : d.revenue
-        const impressions = typeof d.impressions === "string"
-          ? parseInt(d.impressions.replace(",", ""))
-          : d.impressions
-        const clicks = typeof d.clicks === "string"
-          ? parseInt(d.clicks.replace(",", ""))
-          : d.clicks
-          
-        monthlyData[month].revenue += revenue
-        monthlyData[month].impressions += impressions
-        monthlyData[month].clicks += clicks
+        monthlyData[month].revenue += d.revenue
+        monthlyData[month].impressions += d.impressions
+        monthlyData[month].clicks += d.clicks
       })
       return Object.entries(monthlyData).map(([date, data]) => ({
         date,
