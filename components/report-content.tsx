@@ -357,10 +357,10 @@ const reportData = {
   },
 }
 
-// Generate complete daily records from Feb 11, 2026 to Jul 6, 2026
+// Generate complete daily records from Jun 13, 2026 to Jul 8, 2026
 function generateCompleteDailyRecords(baseData: Array<any>): Array<any> {
-  const startDate = new Date(2026, 1, 11) // Feb 11, 2026
-  const endDate = new Date(2026, 6, 6) // Jul 6, 2026
+  const startDate = new Date(2026, 5, 13) // Jun 13, 2026
+  const endDate = new Date(2026, 6, 8) // Jul 8, 2026
   
   // Create a map of existing dates for quick lookup
   const existingDateMap = new Map<string, any>()
@@ -481,34 +481,33 @@ export function ReportContent() {
   const filterDataByDateRange = (data: Array<any>, range: string) => {
     if (!data || data.length === 0) return data
 
-    // Find the latest date with actual data (skip auto-generated zeros)
-    let today = parseDate(data[0].date)
-    
-    // If first record has zero values, find the first non-zero record for reference
-    if (data[0].impressions === "0" && data.length > 1) {
-      for (let i = 1; i < data.length; i++) {
-        if (data[i].impressions !== "0") {
-          today = parseDate(data[i].date)
-          break
-        }
-      }
-    }
-
+    // Use Jul 8, 2026 as the reference "today" date
+    const today = new Date(2026, 6, 8) // Jul 8, 2026
     let cutoffDate = new Date(today)
 
     if (range === "Last 7 Days") {
-      cutoffDate.setDate(cutoffDate.getDate() - 6) // -6 because we include today, so 7 days total
+      // Last 7 days: Jul 2 to Jul 8 (7 days total)
+      cutoffDate.setDate(today.getDate() - 6)
     } else if (range === "Last 30 Days") {
-      cutoffDate.setDate(cutoffDate.getDate() - 29) // -29 because we include today, so 30 days total
+      // Last 30 days: Jun 9 to Jul 8
+      cutoffDate.setDate(today.getDate() - 29)
     } else if (range === "Last 3 Months") {
-      cutoffDate.setMonth(cutoffDate.getMonth() - 3)
+      // Last 3 months: Apr 9 to Jul 8
+      cutoffDate.setMonth(today.getMonth() - 3)
+      cutoffDate.setDate(today.getDate())
     } else if (range === "Last 6 Months") {
-      cutoffDate.setMonth(cutoffDate.getMonth() - 6)
+      // Last 6 months: Jan 9 to Jul 8
+      cutoffDate.setMonth(today.getMonth() - 6)
+      cutoffDate.setDate(today.getDate())
+    } else if (range === "1 Year") {
+      // Last year: Jul 9, 2025 to Jul 8, 2026
+      cutoffDate.setFullYear(today.getFullYear() - 1)
+      cutoffDate.setDate(today.getDate() + 1)
     } else {
       return data
     }
 
-    // Filter and sort by date (newest first)
+    // Filter data within the date range
     const filtered = data.filter(row => {
       const rowDate = parseDate(row.date)
       return rowDate >= cutoffDate && rowDate <= today
