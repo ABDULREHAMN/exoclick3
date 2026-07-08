@@ -689,12 +689,20 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
         const day = dateParts[1].replace(",", "")
         const year = dateParts[2]
         
+        // Parse revenue - handle both string and number formats
+        let revenue = 0
+        if (typeof item.revenue === "string") {
+          revenue = parseFloat(item.revenue.replace(/[$,]/g, ""))
+        } else if (typeof item.revenue === "number") {
+          revenue = item.revenue
+        }
+        // Ensure revenue is a valid number, default to 0 if NaN
+        revenue = isNaN(revenue) ? 0 : revenue
+        
         // Format as "14 Jun" for display
         return {
           date: `${day} ${month}`,
-          revenue: typeof item.revenue === "string" 
-            ? parseFloat(item.revenue.replace("$", "").replace(",", ""))
-            : item.revenue,
+          revenue: revenue,
           impressions: typeof item.impressions === "string"
             ? parseInt(item.impressions.replace(",", ""))
             : item.impressions,
@@ -708,9 +716,13 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       const weeklyData: Record<string, { revenue: number; impressions: number; clicks: number; startDate: Date }> = {}
       data.forEach((d) => {
         // Parse revenue value
-        const revenue = typeof d.revenue === "string" 
-          ? parseFloat(d.revenue.replace("$", "").replace(",", ""))
-          : d.revenue
+        let revenue = 0
+        if (typeof d.revenue === "string") {
+          revenue = parseFloat(d.revenue.replace(/[$,]/g, ""))
+        } else if (typeof d.revenue === "number") {
+          revenue = d.revenue
+        }
+        revenue = isNaN(revenue) ? 0 : revenue
         const impressions = typeof d.impressions === "string"
           ? parseInt(d.impressions.replace(",", ""))
           : d.impressions
@@ -756,9 +768,14 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       const monthlyData: Record<string, { revenue: number; impressions: number; clicks: number }> = {}
       data.forEach((d) => {
         // Parse revenue value
-        const revenue = typeof d.revenue === "string" 
-          ? parseFloat(d.revenue.replace("$", "").replace(",", ""))
-          : d.revenue
+        let revenue = 0
+        if (typeof d.revenue === "string") {
+          revenue = parseFloat(d.revenue.replace(/[$,]/g, ""))
+        } else if (typeof d.revenue === "number") {
+          revenue = d.revenue
+        }
+        revenue = isNaN(revenue) ? 0 : revenue
+        
         const impressions = typeof d.impressions === "string"
           ? parseInt(d.impressions.replace(",", ""))
           : d.impressions
@@ -1057,7 +1074,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
       return (
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-xl">
           <p className="font-medium mb-2">{payload[0].payload.date}</p>
-          <p className="text-sm text-green-600">Revenue: ${payload[0].payload.revenue.toFixed(2)}</p>
+                          <p className="text-sm text-green-600">Revenue: ${typeof payload[0].payload.revenue === "number" ? payload[0].payload.revenue.toFixed(2) : "0.00"}</p>
           <p className="text-sm text-blue-600">Impressions: {payload[0].payload.impressions.toLocaleString()}</p>
           <p className="text-sm text-purple-600">Clicks: {payload[0].payload.clicks.toLocaleString()}</p>
         </div>
@@ -1232,7 +1249,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="text-sm text-gray-600 mb-1">Earnings</div>
-                  <div className="text-2xl font-bold text-gray-400">${todayRevenue.toFixed(2)}</div>
+                  <div className="text-2xl font-bold text-gray-400">${typeof todayRevenue === "number" ? todayRevenue.toFixed(2) : "0.00"}</div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="text-sm text-gray-600 mb-1">Impressions</div>
@@ -1368,7 +1385,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
   return (
     <div className="p-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <StatsCard title="TODAY" value={`$${todayTotals.revenue.toFixed(2)}`} />
+        <StatsCard title="TODAY" value={`$${typeof todayTotals.revenue === "number" ? todayTotals.revenue.toFixed(2) : "0.00"}`} />
         <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(2)}`} />
         <StatsCard title="LAST MONTH" value={`$${lastMonthEarnings.toFixed(2)}`} />
         <StatsCard
