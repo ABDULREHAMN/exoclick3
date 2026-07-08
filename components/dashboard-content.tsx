@@ -629,19 +629,6 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  // Helper function to parse date strings (format: "Jun 13, 2026")
-  const parseDate = (dateString: string): Date => {
-    const months: { [key: string]: number } = {
-      Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-      Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
-    }
-    const parts = dateString.split(/[\s,]+/)
-    const month = months[parts[0]]
-    const day = parseInt(parts[1])
-    const year = parseInt(parts[2])
-    return new Date(year, month, day)
-  }
-
   const applyDashboardFilters = (data: typeof allReportData) => {
     let filtered = [...data]
 
@@ -650,7 +637,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       const cutoffDate = new Date()
       cutoffDate.setDate(cutoffDate.getDate() - dashboardDateRange)
       filtered = filtered.filter((item) => {
-        const itemDate = parseDate(item.date)
+        const itemDate = new Date(item.date)
         return itemDate >= cutoffDate
       })
     }
@@ -689,20 +676,12 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
         const day = dateParts[1].replace(",", "")
         const year = dateParts[2]
         
-        // Parse revenue - handle both string and number formats
-        let revenue = 0
-        if (typeof item.revenue === "string") {
-          revenue = parseFloat(item.revenue.replace(/[$,]/g, ""))
-        } else if (typeof item.revenue === "number") {
-          revenue = item.revenue
-        }
-        // Ensure revenue is a valid number, default to 0 if NaN
-        revenue = isNaN(revenue) ? 0 : revenue
-        
         // Format as "14 Jun" for display
         return {
           date: `${day} ${month}`,
-          revenue: revenue,
+          revenue: typeof item.revenue === "string" 
+            ? parseFloat(item.revenue.replace("$", "").replace(",", ""))
+            : item.revenue,
           impressions: typeof item.impressions === "string"
             ? parseInt(item.impressions.replace(",", ""))
             : item.impressions,
@@ -715,45 +694,20 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       // Weekly aggregation starting Monday
       const weeklyData: Record<string, { revenue: number; impressions: number; clicks: number; startDate: Date }> = {}
       data.forEach((d) => {
-        // Parse revenue value
-        let revenue = 0
-        if (typeof d.revenue === "string") {
-          revenue = parseFloat(d.revenue.replace(/[$,]/g, ""))
-        } else if (typeof d.revenue === "number") {
-          revenue = d.revenue
-        }
-        revenue = isNaN(revenue) ? 0 : revenue
-        const impressions = typeof d.impressions === "string"
-          ? parseInt(d.impressions.replace(",", ""))
-          : d.impressions
-        const clicks = typeof d.clicks === "string"
-          ? parseInt(d.clicks.replace(",", ""))
-          : d.clicks
-        
-        // Parse date string (format: "Jun 14, 2026")
-        const dateParts = d.date.split(" ")
-        const months: { [key: string]: number } = {
-          Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-          Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
-        }
-        const month = months[dateParts[0]]
-        const day = parseInt(dateParts[1].replace(",", ""))
-        const year = parseInt(dateParts[2])
-        const date = new Date(year, month, day)
-        
+        const date = new Date(d.date)
         const dayOfWeek = date.getDay()
         const monday = new Date(date)
         const diff = dayOfWeek === 0 ? 6 : dayOfWeek - 1
-        monday.setDate(monday.getDate() - diff)
+        monday.setDate(date.getDate() - diff)
         monday.setHours(0, 0, 0, 0)
 
         const weekKey = monday.toISOString().split("T")[0]
         if (!weeklyData[weekKey]) {
           weeklyData[weekKey] = { revenue: 0, impressions: 0, clicks: 0, startDate: monday }
         }
-        weeklyData[weekKey].revenue += revenue
-        weeklyData[weekKey].impressions += impressions
-        weeklyData[weekKey].clicks += clicks
+        weeklyData[weekKey].revenue += d.revenue
+        weeklyData[weekKey].impressions += d.impressions
+        weeklyData[weekKey].clicks += d.clicks
       })
       return Object.entries(weeklyData)
         .sort((a, b) => a[1].startDate.getTime() - b[1].startDate.getTime())
@@ -767,29 +721,13 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       // Monthly aggregation
       const monthlyData: Record<string, { revenue: number; impressions: number; clicks: number }> = {}
       data.forEach((d) => {
-        // Parse revenue value
-        let revenue = 0
-        if (typeof d.revenue === "string") {
-          revenue = parseFloat(d.revenue.replace(/[$,]/g, ""))
-        } else if (typeof d.revenue === "number") {
-          revenue = d.revenue
-        }
-        revenue = isNaN(revenue) ? 0 : revenue
-        
-        const impressions = typeof d.impressions === "string"
-          ? parseInt(d.impressions.replace(",", ""))
-          : d.impressions
-        const clicks = typeof d.clicks === "string"
-          ? parseInt(d.clicks.replace(",", ""))
-          : d.clicks
-        
         const month = d.date.split(" ")[0] + " " + d.date.split(" ")[2].split(",")[0]
         if (!monthlyData[month]) {
           monthlyData[month] = { revenue: 0, impressions: 0, clicks: 0 }
         }
-        monthlyData[month].revenue += revenue
-        monthlyData[month].impressions += impressions
-        monthlyData[month].clicks += clicks
+        monthlyData[month].revenue += d.revenue
+        monthlyData[month].impressions += d.impressions
+        monthlyData[month].clicks += d.clicks
       })
       return Object.entries(monthlyData).map(([date, data]) => ({
         date,
@@ -1074,7 +1012,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
       return (
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-xl">
           <p className="font-medium mb-2">{payload[0].payload.date}</p>
-                          <p className="text-sm text-green-600">Revenue: ${typeof payload[0].payload.revenue === "number" ? payload[0].payload.revenue.toFixed(2) : "0.00"}</p>
+          <p className="text-sm text-green-600">Revenue: ${payload[0].payload.revenue.toFixed(2)}</p>
           <p className="text-sm text-blue-600">Impressions: {payload[0].payload.impressions.toLocaleString()}</p>
           <p className="text-sm text-purple-600">Clicks: {payload[0].payload.clicks.toLocaleString()}</p>
         </div>
@@ -1249,7 +1187,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="text-sm text-gray-600 mb-1">Earnings</div>
-                  <div className="text-2xl font-bold text-gray-400">${typeof todayRevenue === "number" ? todayRevenue.toFixed(2) : "0.00"}</div>
+                  <div className="text-2xl font-bold text-gray-400">${todayRevenue.toFixed(2)}</div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-lg shadow-sm">
                   <div className="text-sm text-gray-600 mb-1">Impressions</div>
@@ -1385,7 +1323,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
   return (
     <div className="p-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <StatsCard title="TODAY" value={`$${typeof todayTotals.revenue === "number" ? todayTotals.revenue.toFixed(2) : "0.00"}`} />
+        <StatsCard title="TODAY" value={`$${todayTotals.revenue.toFixed(2)}`} />
         <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(2)}`} />
         <StatsCard title="LAST MONTH" value={`$${lastMonthEarnings.toFixed(2)}`} />
         <StatsCard
