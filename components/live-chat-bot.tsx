@@ -21,27 +21,11 @@ const supportConversation: ChatMessage[] = [
 ]
 
 export default function LiveChatBot() {
-  // Maintenance mode is enabled
-  const isMaintenanceMode = true
-  
-  const maintenanceMessage: ChatMessage[] = [
-    {
-      text: "Live Chat is temporarily unavailable due to scheduled maintenance. Our team is currently working to improve the system. Please try again after 24 hours. We apologize for the inconvenience and appreciate your patience.",
-      sender: "support",
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    },
-  ]
-
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<ChatMessage[]>(isMaintenanceMode ? maintenanceMessage : supportConversation)
+  const [messages, setMessages] = useState<ChatMessage[]>(supportConversation)
   const [input, setInput] = useState("")
 
   const handleSend = () => {
-    // During maintenance mode, show maintenance message instead of sending
-    if (isMaintenanceMode) {
-      return
-    }
-
     if (!input.trim()) return
 
     setMessages([...messages, { text: input, sender: "user", time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }])
@@ -115,16 +99,10 @@ export default function LiveChatBot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder={isMaintenanceMode ? "Chat is unavailable" : "Type a message..."}
-              disabled={isMaintenanceMode}
+              placeholder="Type a message..."
               className="flex-1 text-sm"
             />
-            <Button 
-              onClick={handleSend} 
-              size="icon" 
-              disabled={isMaintenanceMode}
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
+            <Button onClick={handleSend} size="icon" className="bg-blue-600 hover:bg-blue-700">
               <Send className="h-4 w-4" />
             </Button>
           </div>
