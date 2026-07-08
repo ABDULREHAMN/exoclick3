@@ -12,6 +12,19 @@ interface ChatMessage {
   time?: string
 }
 
+// Maintenance mode flag - set to true to enable maintenance mode
+const MAINTENANCE_MODE = true
+
+const MAINTENANCE_MESSAGE = "Live Chat is temporarily unavailable due to scheduled maintenance. Our team is currently working to improve the system. Please try again after 24 hours. We apologize for the inconvenience and appreciate your patience."
+
+const maintenanceConversation: ChatMessage[] = [
+  {
+    text: MAINTENANCE_MESSAGE,
+    sender: "support",
+    time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+  },
+]
+
 const supportConversation: ChatMessage[] = [
   {
     text: "Thank you for contacting us. Our support team has received your request. A member of our team will get back to you shortly. Please keep this chat open for further updates.",
@@ -22,10 +35,15 @@ const supportConversation: ChatMessage[] = [
 
 export default function LiveChatBot() {
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<ChatMessage[]>(supportConversation)
+  const [messages, setMessages] = useState<ChatMessage[]>(MAINTENANCE_MODE ? maintenanceConversation : supportConversation)
   const [input, setInput] = useState("")
 
   const handleSend = () => {
+    // Block message sending if maintenance mode is active
+    if (MAINTENANCE_MODE) {
+      return
+    }
+
     if (!input.trim()) return
 
     setMessages([...messages, { text: input, sender: "user", time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }])
@@ -99,10 +117,16 @@ export default function LiveChatBot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Type a message..."
+              placeholder={MAINTENANCE_MODE ? "Chat unavailable during maintenance" : "Type a message..."}
+              disabled={MAINTENANCE_MODE}
               className="flex-1 text-sm"
             />
-            <Button onClick={handleSend} size="icon" className="bg-blue-600 hover:bg-blue-700">
+            <Button 
+              onClick={handleSend} 
+              size="icon" 
+              className="bg-blue-600 hover:bg-blue-700"
+              disabled={MAINTENANCE_MODE}
+            >
               <Send className="h-4 w-4" />
             </Button>
           </div>
