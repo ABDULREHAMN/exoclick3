@@ -629,6 +629,19 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
+  // Helper function to parse date strings (format: "Jun 13, 2026")
+  const parseDate = (dateString: string): Date => {
+    const months: { [key: string]: number } = {
+      Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+      Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+    }
+    const parts = dateString.split(/[\s,]+/)
+    const month = months[parts[0]]
+    const day = parseInt(parts[1])
+    const year = parseInt(parts[2])
+    return new Date(year, month, day)
+  }
+
   const applyDashboardFilters = (data: typeof allReportData) => {
     let filtered = [...data]
 
@@ -637,7 +650,7 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       const cutoffDate = new Date()
       cutoffDate.setDate(cutoffDate.getDate() - dashboardDateRange)
       filtered = filtered.filter((item) => {
-        const itemDate = new Date(item.date)
+        const itemDate = parseDate(item.date)
         return itemDate >= cutoffDate
       })
     }
@@ -694,20 +707,41 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       // Weekly aggregation starting Monday
       const weeklyData: Record<string, { revenue: number; impressions: number; clicks: number; startDate: Date }> = {}
       data.forEach((d) => {
-        const date = new Date(d.date)
+        // Parse revenue value
+        const revenue = typeof d.revenue === "string" 
+          ? parseFloat(d.revenue.replace("$", "").replace(",", ""))
+          : d.revenue
+        const impressions = typeof d.impressions === "string"
+          ? parseInt(d.impressions.replace(",", ""))
+          : d.impressions
+        const clicks = typeof d.clicks === "string"
+          ? parseInt(d.clicks.replace(",", ""))
+          : d.clicks
+        
+        // Parse date string (format: "Jun 14, 2026")
+        const dateParts = d.date.split(" ")
+        const months: { [key: string]: number } = {
+          Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+          Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+        }
+        const month = months[dateParts[0]]
+        const day = parseInt(dateParts[1].replace(",", ""))
+        const year = parseInt(dateParts[2])
+        const date = new Date(year, month, day)
+        
         const dayOfWeek = date.getDay()
         const monday = new Date(date)
         const diff = dayOfWeek === 0 ? 6 : dayOfWeek - 1
-        monday.setDate(date.getDate() - diff)
+        monday.setDate(monday.getDate() - diff)
         monday.setHours(0, 0, 0, 0)
 
         const weekKey = monday.toISOString().split("T")[0]
         if (!weeklyData[weekKey]) {
           weeklyData[weekKey] = { revenue: 0, impressions: 0, clicks: 0, startDate: monday }
         }
-        weeklyData[weekKey].revenue += d.revenue
-        weeklyData[weekKey].impressions += d.impressions
-        weeklyData[weekKey].clicks += d.clicks
+        weeklyData[weekKey].revenue += revenue
+        weeklyData[weekKey].impressions += impressions
+        weeklyData[weekKey].clicks += clicks
       })
       return Object.entries(weeklyData)
         .sort((a, b) => a[1].startDate.getTime() - b[1].startDate.getTime())
@@ -721,13 +755,24 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
       // Monthly aggregation
       const monthlyData: Record<string, { revenue: number; impressions: number; clicks: number }> = {}
       data.forEach((d) => {
+        // Parse revenue value
+        const revenue = typeof d.revenue === "string" 
+          ? parseFloat(d.revenue.replace("$", "").replace(",", ""))
+          : d.revenue
+        const impressions = typeof d.impressions === "string"
+          ? parseInt(d.impressions.replace(",", ""))
+          : d.impressions
+        const clicks = typeof d.clicks === "string"
+          ? parseInt(d.clicks.replace(",", ""))
+          : d.clicks
+        
         const month = d.date.split(" ")[0] + " " + d.date.split(" ")[2].split(",")[0]
         if (!monthlyData[month]) {
           monthlyData[month] = { revenue: 0, impressions: 0, clicks: 0 }
         }
-        monthlyData[month].revenue += d.revenue
-        monthlyData[month].impressions += d.impressions
-        monthlyData[month].clicks += d.clicks
+        monthlyData[month].revenue += revenue
+        monthlyData[month].impressions += impressions
+        monthlyData[month].clicks += clicks
       })
       return Object.entries(monthlyData).map(([date, data]) => ({
         date,
